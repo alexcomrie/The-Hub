@@ -35,7 +35,6 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
       <div className="relative h-48 overflow-hidden">
         {business.profilePictureUrl ? (
           <div className="relative w-full h-full">
-
             <ImageViewer
               imageUrl={business.profilePictureUrl}
               alt={business.name}

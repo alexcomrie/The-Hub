@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BusinessService } from '@/services/business-service';
 import { Dialog } from '@/components/ui/dialog';
+import { cn } from '@/lib/utils';
 
 interface ImageViewerProps {
   imageUrl: string;
@@ -29,7 +30,7 @@ export default function ImageViewer({
     // Preload the image to check if it's accessible
     if (imageUrl) {
       const directUrl = BusinessService.getDirectImageUrl(imageUrl);
-  
+      console.log('Preloading image:', directUrl);
       
       BusinessService.testDirectImageUrl(directUrl).then((success) => {
         if (!success) {
@@ -63,7 +64,7 @@ export default function ImageViewer({
   };
 
   const handleLoad = () => {
-
+    console.log('Image loaded successfully:', imageUrl);
     setLoading(false);
   };
 

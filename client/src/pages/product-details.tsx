@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Home, ShoppingCart } from "lucide-react";
 import { useBusiness, useBusinessProducts } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import { Product } from "@shared/schema";
@@ -59,14 +59,24 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
       <div className="bg-primary text-primary-foreground p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation(`/business/${business.id}/products`)}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation(`/business/${business.id}/products`)}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation('/')}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <Home className="h-5 w-5" />
+              </Button>
+            </div>
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
@@ -103,6 +113,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                     alt={product.name}
                     className="w-full h-full object-cover"
                     enableZoom
+                    onError={() => console.error('Failed to load product image:', product.name, product.imageUrl)}
                   />
                 </div>
               </div>

@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, ShoppingCart, Plus } from "lucide-react";
+import { ArrowLeft, Home, ShoppingCart, Plus, Package } from "lucide-react";
 import { useBusiness, useBusinessProducts, useRefreshBusinesses } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import { Product } from "@shared/schema";
@@ -22,13 +22,19 @@ export default function ProductList({ params }: ProductListProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [lastRefreshTime, setLastRefreshTime] = useState(Date.now());
 
   // Get unique categories from products
   const categories = productsMap ? Array.from(productsMap.keys()) : [];
 
+  const getCategoryIcon = () => {
+    return <Package className="h-4 w-4 mr-2" />;
+  };
+
   const handleRefresh = async () => {
     await refreshBusinesses();
     refetch();
+    setLastRefreshTime(Date.now());
   };
 
 
@@ -71,14 +77,24 @@ export default function ProductList({ params }: ProductListProps) {
       <div className="bg-primary text-primary-foreground p-4 sticky top-0 z-10">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation(`/business/${business.id}`)}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation(`/business/${business.id}`)}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation('/')}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <Home className="h-5 w-5" />
+              </Button>
+            </div>
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
@@ -115,7 +131,10 @@ export default function ProductList({ params }: ProductListProps) {
               onClick={() => setSelectedCategory(category)}
               className="text-primary-foreground hover:bg-primary-foreground/20"
             >
-              {category}
+              <div className="flex items-center">
+                {getCategoryIcon()}
+                {category}
+              </div>
             </Button>
           ))}
         </div>
@@ -147,12 +166,17 @@ export default function ProductList({ params }: ProductListProps) {
                     imageUrl={product.imageUrl}
                     alt={product.name}
                     className="w-full h-full object-cover"
+                    refreshKey={lastRefreshTime}
+                    onError={() => console.error('Failed to load product image:', product.name, product.imageUrl)}
                   />
                 </div>
               )}
               <div className="p-3">
                 <h3 className="font-semibold truncate">{product.name}</h3>
-                <p className="text-sm text-gray-500 mb-2">{product.category}</p>
+                <div className="flex items-center text-sm text-gray-500 mb-2">
+                  {getCategoryIcon()}
+                  <span>{product.category}</span>
+                </div>
                 <div className="flex items-center justify-between">
                   <span className="font-bold text-green-600">
                     ${product.price.toFixed(2)}

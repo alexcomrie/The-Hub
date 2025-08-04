@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, MapPin, Phone, Mail, Clock, Truck, Info, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Home, MapPin, Phone, Mail, Clock, Truck, Info, ShoppingCart } from "lucide-react";
 import { useBusiness } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "@/components/image-viewer";
@@ -53,14 +53,16 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
       <div className="bg-primary text-primary-foreground p-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/')}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation('/')}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <Home className="h-5 w-5" />
+              </Button>
+            </div>
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
@@ -97,7 +99,6 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
         {/* Profile Image */}
         {business.profilePictureUrl && (
           <Card>
-
             <CardContent className="p-4">
               <div className="w-full h-64 overflow-hidden rounded-lg">
                 <ImageViewer
