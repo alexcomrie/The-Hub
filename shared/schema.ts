@@ -20,7 +20,17 @@ export const BusinessSchema = z.object({
   mapLocation: z.string(),
   deliveryCost: z.number().nullable(),
   islandWideDelivery: z.string(),
-  islandWideDeliveryCost: z.number().nullable()
+  islandWideDeliveryCost: z.number().nullable(),
+  category: z.string().optional() // New field for category
+});
+
+// Category Schema for the new category feature
+export const CategorySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  icon: z.string(), // SVG icon path
+  description: z.string().optional(),
+  subcategories: z.array(z.string()).optional()
 });
 
 // Product Schema - matching the Dart Product model exactly
@@ -64,3 +74,4 @@ export type CartItem = z.infer<typeof CartItemSchema>;
 export type Cart = z.infer<typeof CartSchema>;
 export type User = z.infer<typeof UserSchema>;
 export type InsertUser = z.infer<typeof InsertUserSchema>;
+export type Category = z.infer<typeof CategorySchema>;

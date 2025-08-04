@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { RefreshCw, Search, ShoppingCart, Settings } from "lucide-react";
+import { RefreshCw, Search, ShoppingCart, Settings, Grid } from "lucide-react";
 import { useBusinesses, useRefreshBusinesses } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import BusinessCard from "@/components/business-card";
@@ -64,6 +64,15 @@ export default function BusinessList() {
               className="text-primary-foreground hover:bg-primary-foreground/20"
             >
               <RefreshCw className={`h-5 w-5 ${isRefreshing ? 'animate-spin' : ''}`} />
+            </Button>
+            
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setLocation('/categories')}
+              className="text-primary-foreground hover:bg-primary-foreground/20"
+            >
+              <Grid className="h-5 w-5" />
             </Button>
             
             <div className="relative">

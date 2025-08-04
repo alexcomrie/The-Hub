@@ -13,6 +13,8 @@ import ProductDetails from "@/pages/product-details";
 import Cart from "@/pages/cart";
 import Settings from "@/pages/settings";
 import NotFound from "@/pages/not-found";
+import CategoryList from "@/pages/category-list";
+import CategoryBusinesses from "@/pages/category-businesses";
 
 function Router() {
   return (
@@ -21,6 +23,8 @@ function Router() {
       <Route path="/business/:id" component={BusinessProfile} />
       <Route path="/business/:id/products" component={ProductList} />
       <Route path="/business/:id/product/:productName" component={ProductDetails} />
+      <Route path="/categories" component={CategoryList} />
+      <Route path="/categories/:categoryId" component={CategoryBusinesses} />
       <Route path="/cart" component={Cart} />
       <Route path="/settings" component={Settings} />
       <Route component={NotFound} />

@@ -188,7 +188,8 @@ function businessFromCsv(row: string[]): Business {
     mapLocation: row.length > 14 ? row[14] || '' : '',
     deliveryCost: row.length > 15 ? parseFloat(row[15]) || null : null,
     islandWideDelivery: row.length > 16 ? row[16] || '' : '',
-    islandWideDeliveryCost: row.length > 17 ? parseFloat(row[17]) || null : null
+    islandWideDeliveryCost: row.length > 17 ? parseFloat(row[17]) || null : null,
+    category: row.length > 18 ? row[18] || '' : ''
   };
 }
 
