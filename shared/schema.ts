@@ -40,6 +40,7 @@ export const ProductSchema = z.object({
   price: z.number(),
   description: z.string(),
   imageUrl: z.string(),
+  additionalImageUrls: z.array(z.string()).optional(),
   inStock: z.boolean()
 });
 

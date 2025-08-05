@@ -55,8 +55,27 @@ async function testDirectImageUrl(url: string): Promise<boolean> {
 
 
 function productFromCsv(row: string[]): Product {
-  const imageUrl = row[4] ? getDirectImageUrl(row[4]) : '';
-  
+  console.log('Raw row values:', {
+    name: row[0],
+    category: row[1],
+    price: row[2],
+    description: row[3],
+    inStock: row[4],
+    mainImage: row[5],
+    additionalImage1: row[6],
+    additionalImage2: row[7]
+  });
+
+  const imageUrl = row[5] ? getDirectImageUrl(row[5]) : '';
+  const additionalImageUrls = [
+    row[6] ? getDirectImageUrl(row[6]) : '',
+    row[7] ? getDirectImageUrl(row[7]) : ''
+  ].filter(url => url !== '');
+
+  console.log('Processed image URLs:', {
+    imageUrl,
+    additionalImageUrls
+  });
   
   return {
     name: row[0] || '',
@@ -64,7 +83,8 @@ function productFromCsv(row: string[]): Product {
     price: parseFloat(row[2]) || 0,
     description: row[3] || '',
     imageUrl: imageUrl,
-    inStock: row[5]?.toLowerCase() === 'in stock'
+    additionalImageUrls: additionalImageUrls,
+    inStock: row[4]?.toLowerCase() === 'in stock'
   };
 }
 
@@ -74,18 +94,27 @@ function parseProductsCSV(csvText: string): Map<string, Product[]> {
   const rows = parseCSV(csvText);
   const products = new Map<string, Product[]>();
   
+  console.log('Total rows in CSV:', rows.length);
+  
   // Skip header row (index 0) and process all data rows
   for (let i = 1; i < rows.length; i++) {
     try {
       const row = rows[i];
-      if (row.length >= 6) { // Minimum required columns
-        const product = productFromCsv(row);
-        
-        if (!products.has(product.category)) {
-          products.set(product.category, []);
-        }
-        products.get(product.category)!.push(product);
+      if (row.length < 8) { // Minimum required columns for all images
+        console.warn(`Row ${i} skipped: Insufficient columns (${row.length}/8):`, row);
+        continue;
       }
+      const product = productFromCsv(row);
+      
+      if (!products.has(product.category)) {
+        products.set(product.category, []);
+      }
+      products.get(product.category)!.push(product);
+      console.log(`Row ${i} processed:`, {
+        name: product.name,
+        imageUrl: product.imageUrl,
+        additionalImageUrls: product.additionalImageUrls
+      });
     } catch (e) {
       console.warn('Failed to parse product row:', rows[i], e);
     }
@@ -295,14 +324,26 @@ async function loadBusinesses(): Promise<Business[]> {
 async function loadProductsFromLocal(productSheetUrl: string): Promise<Map<string, Product[]>> {
   try {
     const cacheKey = `products_${btoa(productSheetUrl)}`;
+    console.log('Checking local storage with cache key:', cacheKey);
+    
     const cached = localStorage.getItem(cacheKey);
     if (cached) {
+      console.log('Found cached products data');
       const productsObj = JSON.parse(cached);
       const products = new Map<string, Product[]>();
+      
       Object.entries(productsObj).forEach(([category, items]) => {
         products.set(category, items as Product[]);
       });
+      
+      console.log('Loaded from cache:', {
+        categories: Array.from(products.keys()),
+        totalProducts: Array.from(products.values()).reduce((sum, arr) => sum + arr.length, 0)
+      });
+      
       return products;
+    } else {
+      console.log('No cached products found');
     }
   } catch (e) {
     console.warn('Error loading products from localStorage:', e);
@@ -323,6 +364,7 @@ async function saveProductsToLocal(productSheetUrl: string, products: Map<string
 
 async function fetchProductsFromNetwork(productSheetUrl: string): Promise<Map<string, Product[]>> {
   try {
+    console.log('Fetching products from:', productSheetUrl);
     const response = await fetch(productSheetUrl, {
       method: 'GET',
       headers: {
@@ -331,15 +373,24 @@ async function fetchProductsFromNetwork(productSheetUrl: string): Promise<Map<st
     });
     
     if (!response.ok) {
+      console.error('Fetch response not ok:', response.status, response.statusText);
       throw new Error(`Failed to load products: ${response.status} ${response.statusText}`);
     }
 
     const csvText = await response.text();
+    console.log('CSV text length:', csvText.length);
+    console.log('First 200 characters of CSV:', csvText.substring(0, 200));
+    
     if (!csvText || csvText.trim().length === 0) {
       throw new Error('Empty response from server');
     }
     
     const products = parseProductsCSV(csvText);
+    console.log('Parsed products:', {
+      categories: Array.from(products.keys()),
+      totalProducts: Array.from(products.values()).reduce((sum, arr) => sum + arr.length, 0)
+    });
+    
     await saveProductsToLocal(productSheetUrl, products);
     productCache.set(productSheetUrl, products);
     return products;
@@ -378,9 +429,9 @@ async function loadProducts(productSheetUrl: string): Promise<Map<string, Produc
 
 function getDirectImageUrl(url: string): string {
   if (!url) return '';
-  if (url.includes('drive.google.com')) {
+  console.log('Processing URL:', url);
   
-    
+  if (url.includes('drive.google.com')) {
     // Handle different Google Drive URL formats
     let fileId = null;
     
@@ -388,6 +439,7 @@ function getDirectImageUrl(url: string): string {
     let match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
     if (match) {
       fileId = match[1];
+      console.log('Found file ID (Format 1):', fileId);
     }
     
     // Format 2: /d/FILE_ID/view
@@ -395,6 +447,7 @@ function getDirectImageUrl(url: string): string {
       match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
       if (match) {
         fileId = match[1];
+        console.log('Found file ID (Format 2):', fileId);
       }
     }
     
@@ -403,6 +456,7 @@ function getDirectImageUrl(url: string): string {
       match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (match) {
         fileId = match[1];
+        console.log('Found file ID (Format 3):', fileId);
       }
     }
     
@@ -411,16 +465,19 @@ function getDirectImageUrl(url: string): string {
       match = url.match(/open\?id=([a-zA-Z0-9_-]+)/);
       if (match) {
         fileId = match[1];
+        console.log('Found file ID (Format 4):', fileId);
       }
     }
     
     if (fileId) {
       const directUrl = `https://lh3.googleusercontent.com/d/${fileId}`;
-    
+      console.log('Generated direct URL:', directUrl);
       return directUrl;
     } else {
       console.warn('Could not extract file ID from Google Drive URL:', url);
     }
+  } else {
+    console.log('URL is not a Google Drive URL, returning as-is');
   }
   return url;
 }

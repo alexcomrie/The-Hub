@@ -57,11 +57,11 @@ export default function CategoryList() {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Link href="/all-businesses">
+          <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
             <Button className="w-full max-w-md" variant="outline">
-              View All Businesses
+              Follow us on TikTok
             </Button>
-          </Link>
+          </a>
         </div>
       </div>
     </div>

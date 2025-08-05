@@ -148,6 +148,15 @@ export default function BusinessList() {
           </>
         )}
       </div>
+      
+      {/* TikTok Follow Button */}
+      <div className="p-4 flex justify-center">
+        <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
+          <Button className="w-full max-w-md" variant="outline">
+            Follow us on TikTok
+          </Button>
+        </a>
+      </div>
     </div>
   );
 }

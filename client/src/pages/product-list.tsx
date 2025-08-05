@@ -194,13 +194,20 @@ export default function ProductList({ params }: ProductListProps) {
         </div>
       </div>
 
-      {/* Refresh Button */}
-      <Button
-        className="fixed bottom-4 right-4 shadow-lg"
-        onClick={handleRefresh}
-      >
-        Refresh Products
-      </Button>
+      {/* Refresh and TikTok Buttons */}
+      <div className="fixed bottom-4 right-4 flex gap-2">
+        <Button
+          className="shadow-lg"
+          onClick={handleRefresh}
+        >
+          Refresh Products
+        </Button>
+        <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
+          <Button className="shadow-lg" variant="outline">
+            Follow us on TikTok
+          </Button>
+        </a>
+      </div>
 
       {/* Full Screen Image Viewer */}
       {selectedImage && (

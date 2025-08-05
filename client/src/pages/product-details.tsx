@@ -102,7 +102,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
         <Card>
           <CardContent className="p-6">
             {/* Product Image */}
-            {product.imageUrl && (
+            {(product.imageUrl || (product.additionalImageUrls && product.additionalImageUrls.length > 0)) && (
               <div className="mb-6">
                 <div 
                   className="w-full h-64 rounded-lg overflow-hidden bg-gray-100 cursor-pointer" 
@@ -110,10 +110,15 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 >
                   <ImageViewer
                     imageUrl={product.imageUrl}
+                    additionalImageUrls={product.additionalImageUrls}
                     alt={product.name}
                     className="w-full h-full object-cover"
                     enableZoom
                     onError={() => console.error('Failed to load product image:', product.name, product.imageUrl)}
+                    onImageChange={(index) => {
+                      const images = [product.imageUrl, ...(product.additionalImageUrls || [])];
+                      setSelectedImage(images[index]);
+                    }}
                   />
                 </div>
               </div>
@@ -175,10 +180,15 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
             </svg>
           </Button>
           <ImageViewer
-            imageUrl={selectedImage}
-            className="max-w-[90vw] max-h-[90vh]"
-            enableZoom
-          />
+                imageUrl={selectedImage}
+                additionalImageUrls={product.additionalImageUrls}
+                className="max-w-[90vw] max-h-[90vh]"
+                enableZoom
+                onImageChange={(index) => {
+                  const images = [product.imageUrl, ...(product.additionalImageUrls || [])];
+                  setSelectedImage(images[index]);
+                }}
+              />
         </div>
       )}
     </div>

@@ -5,21 +5,27 @@ import { cn } from '@/lib/utils';
 
 interface ImageViewerProps {
   imageUrl: string;
+  additionalImageUrls?: string[];
   alt?: string;
   className?: string;
   onError?: () => void;
   refreshKey?: number;
   enableZoom?: boolean;
+  onImageChange?: (index: number) => void;
 }
 
 export default function ImageViewer({ 
   imageUrl, 
+  additionalImageUrls = [],
   alt = '', 
   className = '', 
   onError, 
   refreshKey = 0,
-  enableZoom = false 
+  enableZoom = false,
+  onImageChange
 }: ImageViewerProps) {
+  const allImages = [imageUrl, ...additionalImageUrls].filter(url => url !== '');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -45,7 +51,7 @@ export default function ImageViewer({
     setPosition({ x: 0, y: 0 });
   }, [imageUrl, refreshKey]);
 
-  if (!imageUrl) {
+  if (allImages.length === 0) {
     console.warn('ImageViewer: No image URL provided');
     return (
       <div className={`bg-gray-100 flex items-center justify-center ${className}`}>
@@ -69,9 +75,22 @@ export default function ImageViewer({
   };
 
   // Get the image URL with retry logic
-  const getImageUrl = () => {
-    const directUrl = BusinessService.getDirectImageUrl(imageUrl);
+  const getImageUrl = (index: number = currentImageIndex) => {
+    const url = allImages[index];
+    const directUrl = BusinessService.getDirectImageUrl(url);
     return `${directUrl}${directUrl.includes('?') ? '&' : '?'}t=${refreshKey}`;
+  };
+
+  const handlePrevImage = () => {
+    const newIndex = (currentImageIndex - 1 + allImages.length) % allImages.length;
+    setCurrentImageIndex(newIndex);
+    onImageChange?.(newIndex);
+  };
+
+  const handleNextImage = () => {
+    const newIndex = (currentImageIndex + 1) % allImages.length;
+    setCurrentImageIndex(newIndex);
+    onImageChange?.(newIndex);
   };
 
   const handleZoom = (event: WheelEvent) => {
@@ -117,7 +136,7 @@ export default function ImageViewer({
     >
       <img
         src={getImageUrl()}
-        alt={alt}
+        alt={`${alt} ${currentImageIndex + 1}/${allImages.length}`}
         className={`w-full h-full object-cover transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}
         style={{
           transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
@@ -128,6 +147,31 @@ export default function ImageViewer({
         loading="lazy"
         crossOrigin="anonymous"
       />
+      {allImages.length > 1 && (
+        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 z-10">
+          <button
+            onClick={(e) => { e.stopPropagation(); handlePrevImage(); }}
+            className="bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+            aria-label="Previous image"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          </button>
+          <span className="bg-black/50 text-white px-3 py-2 rounded-full text-sm">
+            {currentImageIndex + 1}/{allImages.length}
+          </span>
+          <button
+            onClick={(e) => { e.stopPropagation(); handleNextImage(); }}
+            className="bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors"
+            aria-label="Next image"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      )}
       {loading && (
         <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
