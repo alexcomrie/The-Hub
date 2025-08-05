@@ -125,7 +125,16 @@ export const CategoryService = {
    * @returns Array of categories
    */
   getCategories(): Category[] {
-    return PREDEFINED_CATEGORIES;
+    // Get all businesses
+    const businesses = JSON.parse(localStorage.getItem('businesses') || '[]');
+    
+    // Get unique categories from businesses
+    const usedCategories = new Set(businesses.map((business: Business) => business.category?.toLowerCase()).filter(Boolean));
+    
+    // Filter predefined categories to only include those that are used
+    return PREDEFINED_CATEGORIES.filter(category => 
+      usedCategories.has(category.id.toLowerCase())
+    );
   },
 
   /**
@@ -172,7 +181,7 @@ export const CategoryService = {
       return businesses;
     }
     
-    return businesses.filter(business => {
+    return businesses.filter((business: Business) => {
       // If the business has no category, include it in 'other'
       if (!business.category && categoryId === 'other') {
         return true;

@@ -19,12 +19,12 @@ import CategoryBusinesses from "@/pages/category-businesses";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={BusinessList} />
+      <Route path="/" component={CategoryList} />
+      <Route path="/category/:categoryId" component={CategoryBusinesses} />
+      <Route path="/all-businesses" component={BusinessList} />
       <Route path="/business/:id" component={BusinessProfile} />
       <Route path="/business/:id/products" component={ProductList} />
       <Route path="/business/:id/product/:productName" component={ProductDetails} />
-      <Route path="/categories" component={CategoryList} />
-      <Route path="/categories/:categoryId" component={CategoryBusinesses} />
       <Route path="/cart" component={Cart} />
       <Route path="/settings" component={Settings} />
       <Route component={NotFound} />

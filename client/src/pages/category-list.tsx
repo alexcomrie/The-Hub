@@ -17,14 +17,14 @@ export default function CategoryList() {
       {/* Header */}
       <div className="bg-primary text-primary-foreground p-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Categories</h1>
+          <h1 className="text-2xl font-bold">The Hub</h1>
           <div className="flex items-center gap-2">
-            <Link href="/">
+            <Link href="/all-businesses">
               <Button
                 variant="ghost"
                 className="text-primary-foreground hover:bg-primary-foreground/20"
               >
-                Back to Businesses
+                View All Businesses
               </Button>
             </Link>
           </div>
@@ -57,7 +57,7 @@ export default function CategoryList() {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Link href="/">
+          <Link href="/all-businesses">
             <Button className="w-full max-w-md" variant="outline">
               View All Businesses
             </Button>

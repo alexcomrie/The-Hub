@@ -89,7 +89,7 @@ export default function ProductList({ params }: ProductListProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setLocation('/')}
+                onClick={() => setLocation('/all-businesses')}
                 className="text-primary-foreground hover:bg-primary-foreground/20"
               >
                 <Home className="h-5 w-5" />
@@ -116,7 +116,7 @@ export default function ProductList({ params }: ProductListProps) {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex overflow-x-auto pb-2 mb-4 gap-2 hide-scrollbar">
           <Button
             variant={selectedCategory === null ? "secondary" : "ghost"}
             onClick={() => setSelectedCategory(null)}

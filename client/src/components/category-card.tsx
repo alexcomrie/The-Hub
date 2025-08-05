@@ -9,7 +9,7 @@ interface CategoryCardProps {
 
 export function CategoryCard({ category }: CategoryCardProps) {
   return (
-    <Link href={`/categories/${category.id}`}>
+    <Link href={`/category/${category.id}`}>
       <Card className="cursor-pointer hover:bg-gray-50 transition-colors">
         <CardContent className="flex flex-col items-center justify-center p-4 text-center">
           <div className="w-16 h-16 mb-2 flex items-center justify-center">

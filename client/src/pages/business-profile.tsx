@@ -29,7 +29,7 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-2">Business not found</h2>
-          <Button onClick={() => setLocation('/')}>
+          <Button onClick={() => setLocation('/all-businesses')}>
             Back to Businesses
           </Button>
         </div>

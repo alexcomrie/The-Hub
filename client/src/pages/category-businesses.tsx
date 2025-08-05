@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Loader2 } from 'lucide-react';
 
 export default function CategoryBusinesses() {
-  const [, params] = useRoute('/categories/:categoryId');
+  const [, params] = useRoute('/category/:categoryId');
   const categoryId = params?.categoryId || '';
   const [searchQuery, setSearchQuery] = useState('');
   
@@ -59,7 +59,7 @@ export default function CategoryBusinesses() {
             {category ? category.name : 'Category Not Found'}
           </h1>
           <div className="flex items-center gap-2">
-            <Link href="/categories">
+            <Link href="/">
               <Button
                 variant="ghost"
                 className="text-primary-foreground hover:bg-primary-foreground/20"
@@ -99,7 +99,7 @@ export default function CategoryBusinesses() {
       ) : (
         <div className="text-center p-8 border rounded-lg bg-gray-50">
           <p className="text-gray-500">No businesses found in this category{searchQuery ? ' matching your search' : ''}.</p>
-          <Link href="/">
+          <Link href="/all-businesses">
             <Button variant="link" className="mt-2">
               View all businesses
             </Button>

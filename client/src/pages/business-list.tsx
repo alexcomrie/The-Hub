@@ -58,21 +58,19 @@ export default function BusinessList() {
           <div className="flex items-center gap-2">
             <Button
               variant="ghost"
+              onClick={() => setLocation('/')}
+              className="text-primary-foreground hover:bg-primary-foreground/20"
+            >
+              View Categories
+            </Button>
+            <Button
+              variant="ghost"
               size="icon"
               onClick={handleRefresh}
               disabled={isRefreshing}
               className="text-primary-foreground hover:bg-primary-foreground/20"
             >
               <RefreshCw className={`h-5 w-5 ${isRefreshing ? 'animate-spin' : ''}`} />
-            </Button>
-            
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/categories')}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Grid className="h-5 w-5" />
             </Button>
             
             <div className="relative">
