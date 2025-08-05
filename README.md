@@ -1,6 +1,6 @@
-# Garden Club Web App
+# The Hub Web App
 
-A modern web application for managing garden club services and products. Built with TypeScript, React, and Vite.
+A modern web application for a whide range services and products. Built with TypeScript, React, and Vite.
 
 ## Features
 
