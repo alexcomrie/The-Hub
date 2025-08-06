@@ -1,7 +1,7 @@
 {
-  "name": "Garden Club",
-  "short_name": "GardenClub",
-  "description": "Connect with garden enthusiasts and share your gardening journey",
+  "name": "The Hub",
+  "short_name": "The Hub",
+  "description": "Connect with businesses and discover amazing products and services",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F7F3",
@@ -21,7 +21,7 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["lifestyle", "gardening", "social"],
+  "categories": ["business", "marketplace", "social"],
   "lang": "en",
   "dir": "ltr"
 }
