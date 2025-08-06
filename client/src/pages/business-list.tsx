@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { RefreshCw, Search, ShoppingCart, Settings, Grid } from "lucide-react";
+import { RefreshCw, Search, ShoppingCart, Settings, Grid, Info } from "lucide-react";
 import { useBusinesses, useRefreshBusinesses } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import BusinessCard from "@/components/business-card";
@@ -149,13 +150,44 @@ export default function BusinessList() {
         )}
       </div>
       
-      {/* TikTok Follow Button */}
-      <div className="p-4 flex justify-center">
+      {/* Social and About Buttons */}
+      <div className="p-4 flex flex-col items-center space-y-2">
         <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
           <Button className="w-full max-w-md" variant="outline">
             Follow us on TikTok
           </Button>
         </a>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="w-full max-w-md" variant="outline">
+              <Info className="mr-2 h-4 w-4" />
+              About The Hub
+            </Button>
+          </DialogTrigger>
+          <DialogContent className="max-w-2xl">
+            <DialogHeader>
+              <DialogTitle>About The Hub</DialogTitle>
+            </DialogHeader>
+            <div className="space-y-4 text-sm">
+              <p>
+                The Hub is an online directory platform designed to connect small‑to‑medium businesses, artisans, and skilled individuals with customers in a centralized, convenient location. Whether you're selling homemade crafts, professional services, or unique goods and talents—this is your space to shine.
+              </p>
+              <div className="space-y-2">
+                <h3 className="font-semibold">Key features include:</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li><span className="font-semibold">Business & Individual Profiles:</span> Showcase your contact info, location, hours, and a short bio so customers get to know who you are.</li>
+                  <li><span className="font-semibold">Product Catalogs:</span> Display images and details of your products—each product can feature a large image, description, and price.</li>
+                  <li><span className="font-semibold">Service Listings:</span> If you offer a service, use your profile to display what you do and highlight your skills with photos and descriptions.</li>
+                  <li><span className="font-semibold">Browse or Discover:</span> Users can explore all businesses under categories or view the entire directory of participants.</li>
+                  <li><span className="font-semibold">Shopping Cart:</span> Customers can add multiple items from different vendors into one cart. When ready, they can contact each business directly (via phone, WhatsApp, or email) to finalize the order.</li>
+                </ul>
+              </div>
+              <p>
+                The Hub is built to empower anyone—from individual craftspeople and freelancers to small businesses—giving you an accessible, public platform to display your inventory or services, attract customers, and grow your presence online.
+              </p>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
