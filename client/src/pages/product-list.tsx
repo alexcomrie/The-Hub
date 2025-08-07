@@ -192,9 +192,11 @@ export default function ProductList({ params }: ProductListProps) {
                   <span>{product.category}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="font-bold text-green-600">
-                    ${product.price.toFixed(2)}
-                  </span>
+                  {(product.price !== null && product.price !== undefined && product.price !== 0) && (
+                    <span className="font-bold text-green-600">
+                      ${product.price.toFixed(2)}
+                    </span>
+                  )}
                   <Badge
                     variant={product.inStock ? "default" : "secondary"}
                     className={product.inStock ? "bg-green-100 text-green-800" : ""}

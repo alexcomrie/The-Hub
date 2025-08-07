@@ -170,12 +170,14 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 </Badge>
               </div>
 
-              <div>
-                <h3 className="text-lg font-semibold mb-1">Price</h3>
-                <p className="text-2xl font-bold text-green-600">
-                  ${product.price.toFixed(2)}
-                </p>
-              </div>
+              {(product.price !== null && product.price !== undefined && product.price !== 0) && (
+                <div>
+                  <h3 className="text-lg font-semibold mb-1">Price</h3>
+                  <p className="text-2xl font-bold text-green-600">
+                    ${product.price.toFixed(2)}
+                  </p>
+                </div>
+              )}
 
               <div>
                 <h3 className="text-lg font-semibold mb-1">Description</h3>
