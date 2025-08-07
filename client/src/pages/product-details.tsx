@@ -10,22 +10,20 @@ import { Product } from "@shared/schema";
 import ImageViewer from "@/components/image-viewer";
 
 interface ProductDetailsProps {
-  params: { id: string; productName: string };
+  params: {
+    id: string;
+    productName: string;
+    businessId: string;
+    productId: string;
+  };
 }
 
 export default function ProductDetails({ params }: ProductDetailsProps) {
   const [, setLocation] = useLocation();
-  const { data: business, isLoading: isLoadingBusiness } = useBusiness(params.id);
-  const { data: productsMap, isLoading: isLoadingProducts } = useBusinessProducts(params.id);
-  const { itemCount, addToCart } = useCart();
+  const { data: business, isLoading: isLoadingBusiness } = useBusiness(params.businessId);
+  const { data: productsMap, isLoading: isLoadingProducts } = useBusinessProducts(params.businessId);
+  const { addToCart, itemCount } = useCart();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  // Find the product
-  const product = productsMap
-    ? Array.from(productsMap.values())
-        .flat()
-        .find((p) => p.name === decodeURIComponent(params.productName))
-    : undefined;
 
   if (isLoadingBusiness || isLoadingProducts) {
     return (
@@ -35,13 +33,49 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
     );
   }
 
-  if (!business || !product) {
+  if (!business || !productsMap) {
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold mb-2">Business not found</h2>
+          <Button onClick={() => setLocation('/')}>
+            Back to Businesses
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Redirect if business is in 'coming soon' status
+  if (business.status.toLowerCase() === 'coming_soon') {
+    setLocation(`/business/${business.id}`);
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold mb-2">Coming Soon</h2>
+          <p className="text-muted-foreground mb-4">This business is preparing to open. Products will be available soon!</p>
+          <Button onClick={() => setLocation(`/business/${business.id}`)}>
+            View Profile
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  // Find the product
+  let product: Product | undefined;
+  for (const products of Array.from(productsMap.values())) {
+    product = products.find(p => (p as any).id === params.productId);
+    if (product) break;
+  }
+
+  if (!product) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="text-center">
           <h2 className="text-xl font-semibold mb-2">Product not found</h2>
-          <Button onClick={() => setLocation('/')}>
-            Back to Businesses
+          <Button onClick={() => setLocation(`/business/${business.id}/products`)}>
+            Back to Products
           </Button>
         </div>
       </div>

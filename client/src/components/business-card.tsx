@@ -18,8 +18,15 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
   const [, setLocation] = useLocation();
   const [imageError, setImageError] = useState(false);
   const { selectedBusiness, clearCart } = useCart();
+  const status = business.status.toLowerCase();
 
   const handleClick = () => {
+    // For coming soon businesses, only allow profile view
+    if (status === 'coming_soon') {
+      setLocation(`/business/${business.id}`);
+      return;
+    }
+
     // Clear cart if switching to a different business
     if (selectedBusiness && selectedBusiness.id !== business.id) {
       clearCart();
@@ -86,9 +93,14 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
               Delivery Available
             </span>
           )}
-          {business.status === 'active' && (
+          {status === 'active' && (
             <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
               Open Now
+            </span>
+          )}
+          {status === 'coming_soon' && (
+            <span className="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded-full">
+              Coming Soon
             </span>
           )}
         </div>
@@ -109,14 +121,16 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
           >
             View Profile
           </Button>
-          <Button 
-            variant="default" 
-            size="sm" 
-            onClick={handleClick}
-            className="flex-1 bg-green-600 hover:bg-green-700"
-          >
-            View Products
-          </Button>
+          {status !== 'coming_soon' && (
+            <Button 
+              variant="default" 
+              size="sm" 
+              onClick={handleClick}
+              className="flex-1 bg-green-600 hover:bg-green-700"
+            >
+              View Products
+            </Button>
+          )}
         </div>
       </CardContent>
     </Card>

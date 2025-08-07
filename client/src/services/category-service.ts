@@ -115,6 +115,30 @@ const PREDEFINED_CATEGORIES: Category[] = [
     name: 'Hardware, Tools & Home Improvement',
     icon: '🧱',
     description: 'Hardware and home improvement supplies'
+  },
+  {
+    id: 'plant_garden',
+    name: '🌿 Plant & Garden Sellers',
+    icon: '🌿',
+    description: 'Entrepreneurs offering live plants, gardening supplies, and natural décor'
+  },
+  {
+    id: 'home_decor',
+    name: '🏠 Home Textiles & Décor Sellers',
+    icon: '🏠',
+    description: 'Entrepreneurs selling fabric-based items for home comfort and style'
+  },
+  {
+    id: 'school_gear',
+    name: '🎒 School & Personal Gear Sellers',
+    icon: '🎒',
+    description: 'Entrepreneurs offering bags, bottles, and everyday carry items for students and families'
+  },
+  {
+    id: 'beauty_skincare',
+    name: '🧖‍♀️ Natural Beauty & Skincare Products',
+    icon: '🧖‍♀️',
+    description: 'Entrepreneurs crafting and selling handmade or small-batch personal care items'
   }
 ];
 

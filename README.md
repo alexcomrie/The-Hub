@@ -1,6 +1,6 @@
 # The Hub Web App
 
-A modern web application for a whide range services and products. Built with TypeScript, React, and Vite.
+A modern web application for a wide range services and products. Built with TypeScript, React, and Vite.
 
 ## Features
 
@@ -9,6 +9,8 @@ A modern web application for a whide range services and products. Built with Typ
 - Shopping cart functionality
 - Order processing
 - Responsive design
+- Business status management (active, coming soon)
+- Category-based business organization
 
 ## Tech Stack
 
@@ -38,6 +40,13 @@ npm install
 ```bash
 npm run dev
 ```
+
+## Recent Updates
+
+- Added 'coming soon' status for businesses
+- Improved TypeScript type definitions
+- Enhanced business profile visibility controls
+- Added category management system
 
 ## Deployment
 

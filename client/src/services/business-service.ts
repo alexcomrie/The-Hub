@@ -235,13 +235,14 @@ function parseBusinessesCSV(csvText: string): Business[] {
     if (row.length >= 14) { // Minimum required columns
       try {
         const business = businessFromCsv(row);
+        const status = business.status.toLowerCase();
         
-        // Match Dart implementation's filtering criteria
-        const isActive = business.status.toLowerCase() === 'active' &&
-                        business.profilePictureUrl.length > 0 &&
-                        business.name.length > 0;
+        // Include both active and coming soon businesses
+        const isVisible = (status === 'active' || status === 'coming_soon') &&
+                         business.profilePictureUrl.length > 0 &&
+                         business.name.length > 0;
         
-        if (isActive) {
+        if (isVisible) {
           businesses.push(business);
         }
       } catch (e) {

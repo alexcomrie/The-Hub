@@ -15,6 +15,7 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
   const [, setLocation] = useLocation();
   const { data: business, isLoading } = useBusiness(params.id);
   const { itemCount } = useCart();
+  const status = business?.status.toLowerCase();
 
   if (isLoading) {
     return (
@@ -83,17 +84,27 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
               )}
             </div>
             
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation(`/business/${business.id}/products`)}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <Info className="h-5 w-5" />
-            </Button>
+            {status !== 'coming_soon' && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation(`/business/${business.id}/products`)}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <Info className="h-5 w-5" />
+              </Button>
+            )}
           </div>
         </div>
       </div>
+
+      {/* Coming Soon Banner */}
+      {status === 'coming_soon' && (
+        <div className="bg-gray-100 p-4 text-center">
+          <p className="text-lg font-semibold text-gray-800">Coming Soon</p>
+          <p className="text-sm text-gray-600">This business is preparing to open. Stay tuned!</p>
+        </div>
+      )}
 
       <div className="p-4 space-y-6">
         {/* Profile Image */}
@@ -128,94 +139,98 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
         </Card>
 
         {/* Contact Information */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Phone className="h-5 w-5" />
-              Contact Information
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-start gap-3">
-              <MapPin className="h-5 w-5 text-muted-foreground mt-0.5" />
-              <div>
-                <p className="font-medium">Address</p>
-                <p className="text-muted-foreground">{business.address}</p>
-              </div>
-            </div>
-
-            {business.mapLocation && (
+        {status !== 'coming_soon' && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Phone className="h-5 w-5" />
+                Contact Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
+                <MapPin className="h-5 w-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <Button
-                    variant="link"
-                    className="p-0 h-auto text-blue-600 underline"
-                    onClick={handleMapClick}
-                  >
-                    View on Google Maps
-                  </Button>
+                  <p className="font-medium">Address</p>
+                  <p className="text-muted-foreground">{business.address}</p>
                 </div>
               </div>
-            )}
 
-            <div className="flex items-start gap-3">
-              <Phone className="h-5 w-5 text-muted-foreground mt-0.5" />
-              <div>
-                <p className="font-medium">Phone</p>
-                <p className="text-muted-foreground">{business.phoneNumber}</p>
-              </div>
-            </div>
+              {business.mapLocation && (
+                <div className="flex items-start gap-3">
+                  <MapPin className="h-5 w-5 text-green-600 mt-0.5" />
+                  <div>
+                    <Button
+                      variant="link"
+                      className="p-0 h-auto text-blue-600 underline"
+                      onClick={handleMapClick}
+                    >
+                      View on Google Maps
+                    </Button>
+                  </div>
+                </div>
+              )}
 
-            <div className="flex items-start gap-3">
-              <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
-              <div>
-                <p className="font-medium">WhatsApp</p>
-                <p className="text-muted-foreground">{business.whatsAppNumber}</p>
+              <div className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="font-medium">Phone</p>
+                  <p className="text-muted-foreground">{business.phoneNumber}</p>
+                </div>
               </div>
-            </div>
 
-            <div className="flex items-start gap-3">
-              <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
-              <div>
-                <p className="font-medium">Email</p>
-                <p className="text-muted-foreground">{business.emailAddress}</p>
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="font-medium">WhatsApp</p>
+                  <p className="text-muted-foreground">{business.whatsAppNumber}</p>
+                </div>
               </div>
-            </div>
-          </CardContent>
-        </Card>
+
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <div>
+                  <p className="font-medium">Email</p>
+                  <p className="text-muted-foreground">{business.emailAddress}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Business Hours */}
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Clock className="h-5 w-5" />
-              Business Hours
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3">
-            <div className="flex items-start gap-3">
-              <Clock className="h-5 w-5 text-muted-foreground mt-0.5" />
-              <div>
-                <p className="font-medium">Operation Hours</p>
-                <p className="text-muted-foreground">{business.operationHours}</p>
-              </div>
-            </div>
-
-            {business.specialHours && (
+        {status !== 'coming_soon' && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Clock className="h-5 w-5" />
+                Business Hours
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3">
               <div className="flex items-start gap-3">
-                <Info className="h-5 w-5 text-muted-foreground mt-0.5" />
+                <Clock className="h-5 w-5 text-muted-foreground mt-0.5" />
                 <div>
-                  <p className="font-medium">Special Hours</p>
-                  <p className="text-muted-foreground">{business.specialHours}</p>
+                  <p className="font-medium">Operation Hours</p>
+                  <p className="text-muted-foreground">{business.operationHours}</p>
                 </div>
               </div>
-            )}
-          </CardContent>
-        </Card>
+
+              {business.specialHours && (
+                <div className="flex items-start gap-3">
+                  <Info className="h-5 w-5 text-muted-foreground mt-0.5" />
+                  <div>
+                    <p className="font-medium">Special Hours</p>
+                    <p className="text-muted-foreground">{business.specialHours}</p>
+                  </div>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Delivery Information */}
-        {business.hasDelivery && (
+        {business.hasDelivery && status !== 'coming_soon' && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -244,15 +259,13 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
 
               {business.islandWideDelivery && (
                 <div className="flex items-start gap-3">
-                  <Truck className="h-5 w-5 text-blue-600 mt-0.5" />
+                  <div className="h-5 w-5 mt-0.5" />
                   <div>
-                    <p className="font-medium">Island Wide Delivery</p>
-                    <p className="text-muted-foreground">
-                      via {business.islandWideDelivery}
-                      {business.islandWideDeliveryCost && (
-                        ` - $${business.islandWideDeliveryCost.toFixed(2)}`
-                      )}
-                    </p>
+                    <p className="font-medium">Island-Wide Delivery</p>
+                    <p className="text-muted-foreground">{business.islandWideDelivery}</p>
+                    {business.islandWideDeliveryCost && (
+                      <p className="text-muted-foreground">Cost: ${business.islandWideDeliveryCost.toFixed(2)}</p>
+                    )}
                   </div>
                 </div>
               )}
@@ -261,15 +274,17 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
         )}
 
         {/* Action Button */}
-        <div className="pb-6">
-          <Button
-            onClick={() => setLocation(`/business/${business.id}/products`)}
-            className="w-full"
-            size="lg"
-          >
-            View Products
-          </Button>
-        </div>
+        {status !== 'coming_soon' && (
+          <div className="pb-6">
+            <Button
+              onClick={() => setLocation(`/business/${business.id}/products`)}
+              className="w-full"
+              size="lg"
+            >
+              View Products
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
