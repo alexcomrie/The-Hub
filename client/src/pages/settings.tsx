@@ -66,7 +66,7 @@ export default function Settings() {
                           <li><span className="font-semibold">Product Catalogs:</span> Display images and details of your products—each product can feature a large image, description, and price.</li>
                           <li><span className="font-semibold">Service Listings:</span> If you offer a service, use your profile to display what you do and highlight your skills with photos and descriptions.</li>
                           <li><span className="font-semibold">Browse or Discover:</span> Users can explore all businesses under categories or view the entire directory of participants.</li>
-                          <li><span className="font-semibold">Shopping Cart:</span> Customers can add multiple items from different vendors into one cart. When ready, they can contact each business directly (via phone, WhatsApp, or email) to finalize the order.</li>
+                          <li><span className="font-semibold">Shopping Cart:</span> Customers can add items from their favourite vendors into their cart. When ready, they can send order directly (Via WhatsApp) to finalize the order.</li>
                         </ul>
                       </div>
                       <p>
