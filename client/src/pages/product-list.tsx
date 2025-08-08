@@ -95,7 +95,7 @@ export default function ProductList({ params }: ProductListProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setLocation(`/business/${business.id}`)}
+                onClick={() => setLocation('/all-businesses')}
                 className="text-primary-foreground hover:bg-primary-foreground/20"
               >
                 <ArrowLeft className="h-5 w-5" />
@@ -172,7 +172,7 @@ export default function ProductList({ params }: ProductListProps) {
             <div
               key={`${product.name}-${product.category}`}
               className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
-              onClick={() => setLocation(`/business/${business.id}/product/${encodeURIComponent(product.name)}`)}
+              onClick={() => setLocation(`/business/${business.id}/product/${(product as any).id}/${encodeURIComponent(product.name)}`)} // Add product ID to URL
             >
               {product.imageUrl && (
                 <div className="aspect-square overflow-hidden bg-gray-100">

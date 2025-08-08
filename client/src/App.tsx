@@ -24,7 +24,7 @@ function Router() {
       <Route path="/all-businesses" component={BusinessList} />
       <Route path="/business/:id" component={BusinessProfile} />
       <Route path="/business/:id/products" component={ProductList} />
-      <Route path="/business/:id/product/:productName" component={ProductDetails} />
+      <Route path="/business/:id/product/:productId/:productName" component={ProductDetails} />
       <Route path="/cart" component={Cart} />
       <Route path="/settings" component={Settings} />
       <Route component={NotFound} />

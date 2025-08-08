@@ -35,6 +35,7 @@ export const CategorySchema = z.object({
 
 // Product Schema - matching the Dart Product model exactly
 export const ProductSchema = z.object({
+  id: z.string(),
   name: z.string(),
   category: z.string(),
   price: z.number(),

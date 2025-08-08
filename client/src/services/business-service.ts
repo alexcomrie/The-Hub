@@ -78,6 +78,7 @@ function productFromCsv(row: string[]): Product {
   });
   
   return {
+    id: `${row[0]}-${row[1]}`.toLowerCase().replace(/\s+/g, '_'),
     name: row[0] || '',
     category: row[1] || 'Other',
     price: parseFloat(row[2]) || 0,

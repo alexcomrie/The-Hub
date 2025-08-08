@@ -12,16 +12,15 @@ import ImageViewer from "@/components/image-viewer";
 interface ProductDetailsProps {
   params: {
     id: string;
-    productName: string;
-    businessId: string;
     productId: string;
+    productName: string;
   };
 }
 
 export default function ProductDetails({ params }: ProductDetailsProps) {
   const [, setLocation] = useLocation();
-  const { data: business, isLoading: isLoadingBusiness } = useBusiness(params.businessId);
-  const { data: productsMap, isLoading: isLoadingProducts } = useBusinessProducts(params.businessId);
+  const { data: business, isLoading: isLoadingBusiness } = useBusiness(params.id);
+  const { data: productsMap, isLoading: isLoadingProducts } = useBusinessProducts(params.id);
   const { addToCart, itemCount } = useCart();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
