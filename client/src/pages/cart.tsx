@@ -5,9 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { ArrowLeft, Trash2, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Trash2, ShoppingCart, Plus, Minus } from "lucide-react";
 import { useCart } from "@/providers/cart-provider";
 import { useToast } from "@/hooks/use-toast";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
 
 export default function Cart() {
   const [, setLocation] = useLocation();
@@ -20,8 +21,11 @@ export default function Cart() {
     selectedBusiness,
     removeFromCart, 
     updateCustomerInfo, 
-    clearCart 
+    clearCart,
+    addToCart 
   } = useCart();
+  
+  const [itemToRemove, setItemToRemove] = useState<number | null>(null);
   
   const { toast } = useToast();
   
@@ -176,6 +180,34 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-background p-4">
+      <AlertDialog open={itemToRemove !== null} onOpenChange={() => setItemToRemove(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove Item</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to remove this item from your cart?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel onClick={() => setItemToRemove(null)}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (itemToRemove !== null) {
+                  removeFromCart(itemToRemove);
+                  setItemToRemove(null);
+                  toast({
+                    title: "Item Removed",
+                    description: "The item has been removed from your cart",
+                    duration: 1500
+                  });
+                }
+              }}
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className="max-w-md mx-auto">
         <div className="flex items-center gap-3 mb-6">
           <Button
@@ -203,13 +235,40 @@ export default function Cart() {
                       ${order.product.price.toFixed(2)} x {order.quantity}
                     </p>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeFromCart(index)}
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1 mr-2">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => {
+                          if (order.quantity > 1) {
+                            addToCart(order.product, order.business, order.quantity - 1);
+                          } else {
+                            setItemToRemove(index);
+                          }
+                        }}
+                      >
+                        <Minus className="h-4 w-4" />
+                      </Button>
+                      <span className="w-8 text-center">{order.quantity}</span>
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-8 w-8"
+                        onClick={() => addToCart(order.product, order.business, order.quantity + 1)}
+                      >
+                        <Plus className="h-4 w-4" />
+                      </Button>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => setItemToRemove(index)}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>

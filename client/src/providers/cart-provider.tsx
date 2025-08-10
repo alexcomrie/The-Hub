@@ -104,7 +104,22 @@ export function CartProvider({ children }: CartProviderProps) {
     }
     
     setSelectedBusiness(business);
-    setOrders(prev => [...prev, { product, quantity, business }]);
+    setOrders(prev => {
+      const existingOrderIndex = prev.findIndex(order => order.product.id === product.id);
+      
+      if (existingOrderIndex >= 0) {
+        // Update existing order
+        const updatedOrders = [...prev];
+        updatedOrders[existingOrderIndex] = {
+          ...updatedOrders[existingOrderIndex],
+          quantity: quantity
+        };
+        return updatedOrders;
+      } else {
+        // Add new order
+        return [...prev, { product, quantity, business }];
+      }
+    });
   };
 
   const removeFromCart = (index: number) => {

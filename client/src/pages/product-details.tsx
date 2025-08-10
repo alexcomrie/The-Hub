@@ -8,6 +8,8 @@ import { useBusiness, useBusinessProducts } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import { Product } from "@shared/schema";
 import ImageViewer from "@/components/image-viewer";
+import { QuantitySelector } from "@/components/quantity-selector";
+import { useToast } from "@/hooks/use-toast";
 
 interface ProductDetailsProps {
   params: {
@@ -21,8 +23,10 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
   const [, setLocation] = useLocation();
   const { data: business, isLoading: isLoadingBusiness } = useBusiness(params.id);
   const { data: productsMap, isLoading: isLoadingProducts } = useBusinessProducts(params.id);
-  const { addToCart, itemCount } = useCart();
+  const { addToCart, itemCount, orders } = useCart();
+  const { toast } = useToast();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [showQuantitySelector, setShowQuantitySelector] = useState(false);
 
   if (isLoadingBusiness || isLoadingProducts) {
     return (
@@ -83,7 +87,20 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
 
   const handleAddToCart = () => {
     if (!product.inStock) return;
-    addToCart(product, business, 1);
+    setShowQuantitySelector(true);
+  };
+
+  const handleQuantityConfirm = (quantity: number) => {
+    const existingOrder = orders.find(order => order.product.id === product.id);
+    addToCart(product, business, quantity);
+    
+    toast({
+      title: existingOrder ? "Cart Updated" : "Added to Cart",
+      description: existingOrder
+        ? `Updated quantity of ${product.name} in cart`
+        : `${product.name} has been added to your cart`,
+      duration: 1500
+    });
   };
 
   return (
@@ -196,6 +213,14 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
               >
                 Add to Cart
               </Button>
+
+              <QuantitySelector
+                isOpen={showQuantitySelector}
+                onClose={() => setShowQuantitySelector(false)}
+                onConfirm={handleQuantityConfirm}
+                productName={product.name}
+                price={product.price}
+              />
             </div>
           </CardContent>
         </Card>

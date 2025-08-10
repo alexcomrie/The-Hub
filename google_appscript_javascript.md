@@ -1,48 +1,3 @@
-# Google Apps Script Implementation Guide for TheHub Web App
-
-## Overview
-
-This guide provides step-by-step instructions for implementing a Google Apps Script to handle product review submissions, username management, and business ratings for TheHub Web app.
-
-## Sheet Setup
-
-### Step 1: Create Required Sheets
-
-1. **Reviews Sheet**
-   - Name: "Reviews"
-   - Columns:
-     - Review ID (A)
-     - Product ID (B)
-     - Business ID (C)
-     - Username (D)
-     - Rating (E)
-     - Review Text (F)
-     - Review Date (G)
-     - Status (H)
-     - Device ID (I)
-     - IP Address (J)
-
-2. **BusinessRatings Sheet**
-   - Name: "BusinessRatings"
-   - Columns:
-     - Business ID (A)
-     - Device ID (B)
-     - Rating Type (C)
-     - Rating Date (D)
-
-3. **UserSettings Sheet**
-   - Name: "UserSettings"
-   - Columns:
-     - Device ID (A)
-     - Username (B)
-     - Username Set Date (C)
-     - Username Change Date (D)
-
-## Script Setup
-
-### Step 1: Create Utility Functions
-
-```javascript
 // Utility function to validate username
 function validateUsername(username) {
   if (!username || username.trim().length < 3 || username.trim().length > 30) {
@@ -87,11 +42,7 @@ function checkDailyReviewLimit(deviceId) {
     throw new Error("Daily review limit reached (maximum 2 reviews per day)");
   }
 }
-```
 
-### Step 2: Implement Main Endpoints
-
-```javascript
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
@@ -232,98 +183,3 @@ function handleGetMostLikedBusinesses() {
     businesses: sortedBusinesses
   })).setMimeType(ContentService.MimeType.JSON);
 }
-```
-
-## Deployment
-
-1. Save the script
-2. Click "Deploy" > "New deployment"
-3. Choose "Web app"
-4. Set the following options:
-   - Execute as: "Me"
-   - Who has access: "Anyone"
-5. Click "Deploy"
-6. Authorize the application
-7. Copy the web app URL for use in your application
-
-## API Endpoints
-
-### POST Endpoints
-
-1. Set Username
-   - Action: `setUsername`
-   - Parameters: `deviceId`, `username`
-
-2. Submit Review
-   - Action: `submitReview`
-   - Parameters: `productId`, `businessId`, `username`, `rating`, `reviewText`, `deviceId`
-
-3. Submit Rating
-   - Action: `submitRating`
-   - Parameters: `businessId`, `deviceId`, `ratingType`
-
-### GET Endpoints
-
-1. Get Rating Counts
-   - Action: `getRatingCounts`
-   - Parameters: `businessId`
-
-2. Get Most Liked Businesses
-   - Action: `getMostLikedBusinesses`
-   - No parameters required
-
-## Testing
-
-1. Test username management:
-   - Create new username
-   - Attempt to change username before 35 days
-   - Attempt to create invalid username
-
-2. Test review submission:
-   - Submit review with valid username
-   - Test daily review limit
-   - Test character limit
-
-3. Test business ratings:
-   - Submit likes and dislikes
-   - Get rating counts
-   - Get most liked businesses
-
-## Security Considerations
-
-1. Input Validation
-   - Validate all input parameters
-   - Sanitize text inputs
-   - Enforce character limits
-
-2. Rate Limiting
-   - Username changes (35-day limit)
-   - Daily review limits
-   - Device tracking
-
-3. Error Handling
-   - Proper error messages
-   - Secure error responses
-
-## Maintenance
-
-1. Regular Tasks
-   - Monitor sheet size
-   - Archive old data
-   - Check for invalid entries
-
-2. Backup
-   - Regular backups
-   - Version control
-
-## Advanced Features
-
-1. Analytics
-   - Track popular businesses
-   - Monitor user engagement
-   - Review patterns
-
-2. Notifications
-   - New review alerts
-   - Rating milestones
-   - Suspicious activity
