@@ -11,7 +11,9 @@ export const BusinessSchema = z.object({
   emailAddress: z.string(),
   hasDelivery: z.boolean(),
   deliveryArea: z.string(),
-  operationHours: z.string(),
+  operationHours: z.string().regex(/^\d{1,2}:\d{2} [AP]M - \d{1,2}:\d{2} [AP]M$/, {
+    message: "Operation hours must be in format '8:00 AM - 9:30 PM'"
+  }),
   specialHours: z.string(),
   profilePictureUrl: z.string(),
   productSheetUrl: z.string(),

@@ -6,6 +6,7 @@ import { useLocation } from "wouter";
 import { Store, RefreshCw } from "lucide-react";
 import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "./image-viewer";
+import { isBusinessOpen } from "@/lib/utils";
 
 interface BusinessCardProps {
   business: Business;
@@ -19,6 +20,7 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
   const [imageError, setImageError] = useState(false);
   const { selectedBusiness, clearCart } = useCart();
   const status = business.status.toLowerCase();
+  const isOpen = status === 'active' && isBusinessOpen(business.operationHours);
 
   const handleClick = () => {
     // For coming soon businesses, only allow profile view
@@ -49,6 +51,13 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
               onError={() => setImageError(true)}
               refreshKey={lastRefreshTime}
               enableZoom={true}
+              onClick={(e) => {
+                e.stopPropagation();
+                if (selectedBusiness && selectedBusiness.id !== business.id) {
+                  clearCart();
+                }
+                setLocation(`/business/${business.id}`);
+              }}
             />
             {onRefresh && (
               <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -94,8 +103,8 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
             </span>
           )}
           {status === 'active' && (
-            <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-              Open Now
+            <span className={`text-xs px-2 py-1 rounded-full ${isOpen ? 'bg-blue-100 text-blue-800' : 'bg-red-100 text-red-800'}`}>
+              {isOpen ? 'Open Now' : 'Closed'}
             </span>
           )}
           {status === 'coming_soon' && (

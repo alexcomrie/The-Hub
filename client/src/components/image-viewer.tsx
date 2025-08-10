@@ -12,6 +12,7 @@ interface ImageViewerProps {
   refreshKey?: number;
   enableZoom?: boolean;
   onImageChange?: (index: number) => void;
+  onClick?: (event: React.MouseEvent) => void;
 }
 
 export default function ImageViewer({ 
@@ -22,7 +23,8 @@ export default function ImageViewer({
   onError, 
   refreshKey = 0,
   enableZoom = false,
-  onImageChange
+  onImageChange,
+  onClick
 }: ImageViewerProps) {
   const allImages = [imageUrl, ...additionalImageUrls].filter(url => url !== '');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -133,6 +135,7 @@ export default function ImageViewer({
       onWheel={handleZoom as any}
       onMouseMove={handleMouseMove}
       style={{ overflow: 'hidden' }}
+      onClick={onClick}
     >
       <img
         src={getImageUrl()}

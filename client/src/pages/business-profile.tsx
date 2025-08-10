@@ -111,11 +111,11 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
         {business.profilePictureUrl && (
           <Card>
             <CardContent className="p-4">
-              <div className="w-full h-64 overflow-hidden rounded-lg">
+              <div className="w-full overflow-hidden rounded-lg">
                 <ImageViewer
                   imageUrl={business.profilePictureUrl}
                   alt={business.name}
-                  className="w-full h-full object-cover cursor-pointer"
+                  className="w-full h-auto max-h-[600px] object-contain cursor-pointer"
                   enableZoom={true}
                 />
               </div>
