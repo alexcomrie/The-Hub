@@ -175,7 +175,7 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
                 <Phone className="h-5 w-5 text-muted-foreground mt-0.5" />
                 <div>
                   <p className="font-medium">Phone</p>
-                  <p className="text-muted-foreground">{business.phoneNumber}</p>
+                  <a href={`tel:${business.phoneNumber}`} className="text-muted-foreground hover:text-primary">{business.phoneNumber}</a>
                 </div>
               </div>
 
@@ -191,7 +191,7 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
                 <Mail className="h-5 w-5 text-muted-foreground mt-0.5" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-muted-foreground">{business.emailAddress}</p>
+                  <a href={`mailto:${business.emailAddress}`} className="text-muted-foreground hover:text-primary">{business.emailAddress}</a>
                 </div>
               </div>
             </CardContent>
