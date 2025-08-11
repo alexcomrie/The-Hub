@@ -23,7 +23,8 @@ export const BusinessSchema = z.object({
   deliveryCost: z.number().nullable(),
   islandWideDelivery: z.string(),
   islandWideDeliveryCost: z.number().nullable(),
-  category: z.string().optional() // New field for category
+  category: z.string().optional(), // New field for category
+  profileType: z.enum(['product_sales', 'product_listing']).default('product_sales') // New field for profile type
 });
 
 // Category Schema for the new category feature

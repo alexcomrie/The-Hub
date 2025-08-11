@@ -112,21 +112,23 @@ export default function ProductList({ params }: ProductListProps) {
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/cart')}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-            {itemCount > 0 && (
-              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {itemCount}
-              </div>
-            )}
-          </div>
+          {business.profileType === 'product_sales' && (
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation('/cart')}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              {itemCount > 0 && (
+                <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Category Filter */}
@@ -192,17 +194,19 @@ export default function ProductList({ params }: ProductListProps) {
                   <span>{product.category}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  {(product.price !== null && product.price !== undefined && product.price !== 0) && (
+                  {business.profileType === 'product_sales' && product.price !== null && product.price !== undefined && product.price !== 0 && (
                     <span className="font-bold text-green-600">
                       ${product.price.toFixed(2)}
                     </span>
                   )}
-                  <Badge
-                    variant={product.inStock ? "default" : "secondary"}
-                    className={product.inStock ? "bg-green-100 text-green-800" : ""}
-                  >
-                    {product.inStock ? "In Stock" : "Out of Stock"}
-                  </Badge>
+                  {business.profileType === 'product_sales' && (
+                    <Badge
+                      variant={product.inStock ? "default" : "secondary"}
+                      className={product.inStock ? "bg-green-100 text-green-800" : ""}
+                    >
+                      {product.inStock ? "In Stock" : "Out of Stock"}
+                    </Badge>
+                  )}
                 </div>
               </div>
             </div>

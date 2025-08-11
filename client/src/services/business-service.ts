@@ -198,7 +198,6 @@ function parseCSV(csvText: string): string[][] {
 function businessFromCsv(row: string[]): Business {
   const profilePictureUrl = row[10] || '';
   
-  
   return {
     id: row[0].toLowerCase().replace(/\s+/g, '_'),
     name: row[0] || '',
@@ -219,7 +218,8 @@ function businessFromCsv(row: string[]): Business {
     deliveryCost: row.length > 15 ? parseFloat(row[15]) || null : null,
     islandWideDelivery: row.length > 16 ? row[16] || '' : '',
     islandWideDeliveryCost: row.length > 17 ? parseFloat(row[17]) || null : null,
-    category: row.length > 18 ? row[18] || '' : ''
+    category: row.length > 18 ? row[18] || '' : '',
+    profileType: (row.length > 19 && row[19]?.toLowerCase() === 'product_listing') ? 'product_listing' : 'product_sales'
   };
 }
 

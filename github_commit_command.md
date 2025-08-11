@@ -1,1 +1,1 @@
-git add . && git commit -m "update image container will automatically adjust to the image's dimensions, modified the business profile image click behavior implemented the business hours functionality" && git push 
+git add . && git commit -m "implemented the profile type systemy" && git push 

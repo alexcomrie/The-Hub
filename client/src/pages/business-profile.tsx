@@ -67,22 +67,25 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
+          // In the header section, update the cart button rendering
           <div className="flex items-center gap-2">
-            <div className="relative">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setLocation('/cart')}
-                className="text-primary-foreground hover:bg-primary-foreground/20"
-              >
-                <ShoppingCart className="h-5 w-5" />
-              </Button>
-              {itemCount > 0 && (
-                <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                  {itemCount}
-                </div>
-              )}
-            </div>
+            {business.profileType === 'product_sales' && (
+              <div className="relative">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setLocation('/cart')}
+                  className="text-primary-foreground hover:bg-primary-foreground/20"
+                >
+                  <ShoppingCart className="h-5 w-5" />
+                </Button>
+                {itemCount > 0 && (
+                  <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                    {itemCount}
+                  </div>
+                )}
+              </div>
+            )}
             
             {status !== 'coming_soon' && (
               <Button

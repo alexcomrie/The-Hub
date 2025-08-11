@@ -130,21 +130,23 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
-          <div className="relative">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setLocation('/cart')}
-              className="text-primary-foreground hover:bg-primary-foreground/20"
-            >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
-            {itemCount > 0 && (
-              <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {itemCount}
-              </div>
-            )}
-          </div>
+          {business.profileType === 'product_sales' && (
+            <div className="relative">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setLocation('/cart')}
+                className="text-primary-foreground hover:bg-primary-foreground/20"
+              >
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              {itemCount > 0 && (
+                <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {itemCount}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -178,15 +180,17 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
             <div className="space-y-4">
               <div>
                 <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
-                <Badge 
-                  variant={product.inStock ? "default" : "secondary"}
-                  className={product.inStock ? "bg-green-100 text-green-800" : ""}
-                >
-                  {product.inStock ? 'In Stock' : 'Out of Stock'}
-                </Badge>
+                {business.profileType === 'product_sales' && (
+                  <Badge 
+                    variant={product.inStock ? "default" : "secondary"}
+                    className={product.inStock ? "bg-green-100 text-green-800" : ""}
+                  >
+                    {product.inStock ? 'In Stock' : 'Out of Stock'}
+                  </Badge>
+                )}
               </div>
 
-              {(product.price !== null && product.price !== undefined && product.price !== 0) && (
+              {business.profileType === 'product_sales' && product.price !== null && product.price !== undefined && product.price !== 0 && (
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Price</h3>
                   <p className="text-2xl font-bold text-green-600">
@@ -205,14 +209,16 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 <p className="text-gray-600">{product.category}</p>
               </div>
 
-              <Button
-                className="w-full"
-                size="lg"
-                onClick={handleAddToCart}
-                disabled={!product.inStock}
-              >
-                Add to Cart
-              </Button>
+              {business.profileType === 'product_sales' && (
+                <Button
+                  className="w-full"
+                  size="lg"
+                  onClick={handleAddToCart}
+                  disabled={!product.inStock}
+                >
+                  Add to Cart
+                </Button>
+              )}
 
               <QuantitySelector
                 isOpen={showQuantitySelector}
