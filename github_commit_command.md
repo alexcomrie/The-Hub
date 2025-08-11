@@ -1,1 +1,1 @@
-git add . && git commit -m "implemented the profile type systemy" && git push 
+git add . && git commit -m "removed the unnecessary comment" && git push 

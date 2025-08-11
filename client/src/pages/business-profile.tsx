@@ -67,7 +67,6 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
             <h1 className="text-xl font-semibold">{business.name}</h1>
           </div>
           
-          // In the header section, update the cart button rendering
           <div className="flex items-center gap-2">
             {business.profileType === 'product_sales' && (
               <div className="relative">
