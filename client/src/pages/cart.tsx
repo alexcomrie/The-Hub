@@ -69,20 +69,20 @@ export default function Cart() {
     
     for (const order of orders) {
       const itemTotal = order.product.price * order.quantity;
-      summary += `${order.product.name} x ${order.quantity} @ $${order.product.price.toFixed(2)} = $${itemTotal.toFixed(2)}\n`;
+      summary += `${order.product.name} x ${order.quantity} @ $${Math.round(order.product.price)} = $${Math.round(itemTotal)}\n`;
     }
 
-    summary += `\nTotal: $${total.toFixed(2)}`;
+    summary += `\nTotal: $${Math.round(total)}`;
     
     if (deliveryOption === 'delivery' && selectedBusiness?.hasDelivery) {
       summary += `\nDelivery Area: ${selectedBusiness.deliveryArea}`;
       if (selectedBusiness.deliveryCost) {
-        summary += `\nDelivery Cost: $${selectedBusiness.deliveryCost.toFixed(2)}`;
+        summary += `\nDelivery Cost: $${Math.round(selectedBusiness.deliveryCost)}`;
       }
     } else if (deliveryOption === 'island_wide' && selectedBusiness?.islandWideDelivery) {
       summary += `\nIsland Wide Delivery via ${selectedBusiness.islandWideDelivery}`;
       if (selectedBusiness.islandWideDeliveryCost) {
-        summary += `\nDelivery Cost: $${selectedBusiness.islandWideDeliveryCost.toFixed(2)}`;
+        summary += `\nDelivery Cost: $${Math.round(selectedBusiness.islandWideDeliveryCost)}`;
       }
     }
 
@@ -232,7 +232,7 @@ export default function Cart() {
                       {order.product.description}
                     </p>
                     <p className="text-sm font-medium">
-                      ${order.product.price.toFixed(2)} x {order.quantity}
+                      ${Math.round(order.product.price)} x {order.quantity}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
@@ -350,17 +350,17 @@ export default function Cart() {
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>${Math.round(subtotal)}</span>
               </div>
               {deliveryCost > 0 && (
                 <div className="flex justify-between">
                   <span>Delivery Cost</span>
-                  <span>${deliveryCost.toFixed(2)}</span>
+                  <span>${Math.round(deliveryCost)}</span>
                 </div>
               )}
               <div className="border-t pt-2 flex justify-between font-semibold">
                 <span>Total</span>
-                <span>${total.toFixed(2)}</span>
+                <span>${Math.round(total)}</span>
               </div>
             </div>
           </CardContent>

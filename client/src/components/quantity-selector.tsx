@@ -69,7 +69,7 @@ export function QuantitySelector({ isOpen, onClose, onConfirm, productName, pric
             </Button>
           </div>
           <div className="text-center text-lg font-semibold">
-            Total: ${(price * quantity).toFixed(2)}
+            Total: ${Math.round(price * quantity)}
           </div>
         </div>
         <DialogFooter>

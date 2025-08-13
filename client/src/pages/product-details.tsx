@@ -194,7 +194,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 <div>
                   <h3 className="text-lg font-semibold mb-1">Price</h3>
                   <p className="text-2xl font-bold text-green-600">
-                    ${product.price.toFixed(2)}
+                    ${Math.round(product.price)}
                   </p>
                 </div>
               )}
