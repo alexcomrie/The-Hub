@@ -157,8 +157,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
             {(product.imageUrl || (product.additionalImageUrls && product.additionalImageUrls.length > 0)) && (
               <div className="mb-6">
                 <div 
-                  className="w-full h-64 rounded-lg overflow-hidden bg-gray-100 cursor-pointer" 
-                  onClick={() => setSelectedImage(product.imageUrl)}
+                  className="w-full h-64 rounded-lg overflow-hidden bg-gray-100" 
                 >
                   <ImageViewer
                     imageUrl={product.imageUrl}
@@ -167,9 +166,10 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                     className="w-full h-full object-cover"
                     enableZoom
                     onError={() => console.error('Failed to load product image:', product.name, product.imageUrl)}
+                    onClick={() => setSelectedImage(product.imageUrl)}
                     onImageChange={(index) => {
-                      const images = [product.imageUrl, ...(product.additionalImageUrls || [])];
-                      setSelectedImage(images[index]);
+                      // Only update the current image index, don't trigger full-screen
+                      console.log('Image changed to index:', index);
                     }}
                   />
                 </div>
@@ -251,6 +251,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 className="max-w-[90vw] max-h-[90vh]"
                 enableZoom
                 onImageChange={(index) => {
+                  // Update the selected image in full-screen mode
                   const images = [product.imageUrl, ...(product.additionalImageUrls || [])];
                   setSelectedImage(images[index]);
                 }}

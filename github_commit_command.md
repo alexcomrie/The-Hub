@@ -1,1 +1,1 @@
-git add . && git commit -m "removed the unnecessary comment" && git push 
+git add . && git commit -m "modified the product details page to improve the image navigation experience" && git push 
