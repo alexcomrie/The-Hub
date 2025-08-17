@@ -10,6 +10,7 @@ import { Product } from "@shared/schema";
 import ImageViewer from "@/components/image-viewer";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { useToast } from "@/hooks/use-toast";
+import SEOHead from "../components/SEOHead";
 
 interface ProductDetailsProps {
   params: {
@@ -84,6 +85,8 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
       </div>
     );
   }
+  
+  // SEO metadata will be handled by SEOHead component
 
   const handleAddToCart = () => {
     if (!product.inStock) return;
@@ -105,6 +108,7 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead business={business} product={product} />
       {/* Header */}
       <div className="bg-primary text-primary-foreground p-4">
         <div className="flex items-center justify-between">

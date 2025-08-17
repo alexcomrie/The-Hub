@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BusinessService } from '@/services/business-service';
 import { Dialog } from '@/components/ui/dialog';
 import { cn } from '@/lib/utils';
+import OptimizedImage from './optimized-image';
 
 interface ImageViewerProps {
   imageUrl: string;
@@ -137,18 +138,18 @@ export default function ImageViewer({
       style={{ overflow: 'hidden' }}
       onClick={onClick}
     >
-      <img
+      <OptimizedImage
         src={getImageUrl()}
         alt={`${alt} ${currentImageIndex + 1}/${allImages.length}`}
-        className={`w-full h-full object-cover transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}
+        className={`w-full h-full object-cover`}
         style={{
           transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
           transition: loading ? 'opacity 0.3s' : 'transform 0.1s'
         }}
         onError={handleError}
         onLoad={handleLoad}
-        loading="lazy"
-        crossOrigin="anonymous"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+        priority={false}
       />
       {allImages.length > 1 && (
         <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-2 z-10">

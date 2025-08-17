@@ -6,6 +6,7 @@ import { ArrowLeft, Home, MapPin, Phone, Mail, Clock, Truck, Info, ShoppingCart 
 import { useBusiness } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "@/components/image-viewer";
+import SEOHead from "../components/SEOHead";
 
 interface BusinessProfileProps {
   params: { id: string };
@@ -48,8 +49,11 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
     }
   };
 
+  // SEO metadata will be handled by SEOHead component
+
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead business={business} />
       {/* Header */}
       <div className="bg-primary text-primary-foreground p-4">
         <div className="flex items-center justify-between">

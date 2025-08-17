@@ -24,7 +24,13 @@ export const BusinessSchema = z.object({
   islandWideDelivery: z.string(),
   islandWideDeliveryCost: z.number().nullable(),
   category: z.string().optional(), // New field for category
-  profileType: z.enum(['product_sales', 'product_listing']).default('product_sales') // New field for profile type
+  profileType: z.enum(['product_sales', 'product_listing']).default('product_sales'), // New field for profile type
+  // SEO fields
+  metaTitle: z.string().optional(),
+  metaDescription: z.string().optional(),
+  keywords: z.array(z.string()).optional(),
+  canonicalUrl: z.string().optional(),
+  slug: z.string().optional()
 });
 
 // Category Schema for the new category feature

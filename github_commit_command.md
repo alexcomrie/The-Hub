@@ -1,1 +1,1 @@
-git add . && git commit -m "updated all price displays throughout the application to show whole numbers without decimal places" && git push 
+git add . && git commit -m "add SEO Implementation" && git push 

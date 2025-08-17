@@ -1,0 +1,9 @@
+i would like to add a an additional delivery option "Overseas Shipping" so in order to add this option, in the profile sheet there will be 3 more columns
+- Column "U" 
+- Column "V"
+- Column "W"
+
+Column "U" will titled "Overseas Shipping" and will list the following options: "Yes", "No". this will indicate overseas shipping is available or not, if ste to no, the overseas shipping option will be disabled and not visable as a dilivery option, and if set to yes, the overseas shipping option will be enabled and visible as a delivery option and use column "V" and "W",
+Column "V" will be titled "Overseas Shipping Cost option" this will indicate how the over seas shipping cost will be calculated, the options will be: "Flat Rate", "Per Pound", flat rate will be a fixed cost, and will just add the flat fee to the total product cost, similar to the regular shipping option, "Per Pound", for this another colunm will be added to the product sheet at cilumn "I"(of the product sheet) which will be "weight" and the this column will have the weight of the product in kg, and the per pound option will be calculate the weight of the product and convert it to pounds and then multiply it by the cost per pound, and add it to the total product cost, to give the final total, Each weight in pounds must round up to a whole number eg if the total wieght in pounds is 0.4 pounds it will round up to 1 pounds, like if its 1.2 pounds it will round up to 2 pounds, and if its 3.6 pounds it will round up to 4 pounds, and so on
+
+Column "W" will be titled "Overseas Shipping Cost" this will indicate the amount that will use to calculate the "Flat Rate" and "Per Pound" cost
