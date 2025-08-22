@@ -1,1 +1,1 @@
-git add . && git commit -m "add SEO Implementation" && git push 
+git add . && git commit -m "update SEO Implementation and update tiktok button" && git push 

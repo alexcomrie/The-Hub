@@ -224,7 +224,7 @@ export default function ProductList({ params }: ProductListProps) {
         </Button>
         <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
           <Button className="shadow-lg" variant="outline">
-            Follow us on TikTok
+            Follow The Hub on TikTok
           </Button>
         </a>
       </div>

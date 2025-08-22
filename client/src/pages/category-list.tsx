@@ -61,7 +61,7 @@ export default function CategoryList() {
         <div className="mt-8 flex flex-col items-center space-y-2">
           <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
             <Button className="w-full max-w-md" variant="outline">
-              Follow us on TikTok
+              Follow The Hub on TikTok
             </Button>
           </a>
           <Dialog>
