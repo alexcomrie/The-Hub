@@ -33,17 +33,16 @@ export default defineConfig({
     // Configure build options
     rollupOptions: {
       input: {
-        app: './index.html',
-        home: './pages/Home.tsx',
-        categories: './pages/Categories.tsx',
-        businesses: './pages/BusinessProfile.tsx',
-        products: './pages/ProductList.tsx'
+        app: path.resolve(import.meta.dirname, 'client/index.html'),
+        home: path.resolve(import.meta.dirname, 'lib/pages/Home.tsx'),
+        categories: path.resolve(import.meta.dirname, 'lib/pages/Categories.tsx'),
+        businesses: path.resolve(import.meta.dirname, 'lib/pages/BusinessProfile.tsx'),
+        products: path.resolve(import.meta.dirname, 'lib/pages/ProductList.tsx')
       },
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-          'utils': ['./src/utils/analytics.ts'],
-          'components': ['./src/components/OptimizedImage.tsx']
+          'utils': ['./lib/utils/analytics.ts'],
+          'components': ['./lib/components/OptimizedImage.tsx']
         }
       }
     },
@@ -55,14 +54,7 @@ export default defineConfig({
     assetsInlineLimit: 4096,
     // Configure CSS optimization
     cssCodeSplit: true,
-    // Configure minification
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: process.env.NODE_ENV === 'production',
-        drop_debugger: process.env.NODE_ENV === 'production'
-      }
-    }
+    
   },
   server: {
     fs: {
