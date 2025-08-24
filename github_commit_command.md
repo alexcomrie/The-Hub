@@ -1,1 +1,1 @@
-git add . && git commit -m "update SEO Implementation and update tiktok button" && git push 
+git add . && git commit -m "update app version to 1.1.0" && git push 

@@ -8,6 +8,7 @@ import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "@/components/image-viewer";
 import SEOHead from "../components/SEOHead";
 
+
 interface BusinessProfileProps {
   params: { id: string };
 }
@@ -141,6 +142,8 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
                 <p className="text-base leading-relaxed">{business.bio}</p>
               </div>
             )}
+            {/* Add BusinessRating component */}
+            
           </CardContent>
         </Card>
 

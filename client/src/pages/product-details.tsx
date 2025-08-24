@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Home, ShoppingCart } from "lucide-react";
+import { ArrowLeft, Home, ShoppingCart, MessageCircle } from "lucide-react";
 import { useBusiness, useBusinessProducts } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import { Product } from "@shared/schema";
@@ -11,6 +11,7 @@ import ImageViewer from "@/components/image-viewer";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "../components/SEOHead";
+
 
 interface ProductDetailsProps {
   params: {
@@ -232,6 +233,9 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
                 price={product.price}
               />
             </div>
+
+            {/* Review System */}
+            
           </CardContent>
         </Card>
       </div>

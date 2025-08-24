@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LayoutGrid, List } from "lucide-react";
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +24,7 @@ export default function ProductList({ params }: ProductListProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [lastRefreshTime, setLastRefreshTime] = useState(Date.now());
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
 
   // Get unique categories from products
   const categories = productsMap ? Array.from(productsMap.keys()) : [];
@@ -167,17 +169,46 @@ export default function ProductList({ params }: ProductListProps) {
         </div>
       </div>
 
-      {/* Product Grid */}
+      {/* View Toggle */}
+      <div className="p-4 flex justify-end">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setViewMode(viewMode === 'list' ? 'grid' : 'list')}
+          className="mb-4 flex items-center gap-2"
+        >
+          {viewMode === 'list' ? (
+            <>
+              <LayoutGrid className="h-4 w-4" />
+              Grid View
+            </>
+          ) : (
+            <>
+              <List className="h-4 w-4" />
+              List View
+            </>
+          )}
+        </Button>
+      </div>
+
+      {/* Product List/Grid */}
       <div className="p-4">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className={viewMode === 'grid' ? 
+          "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" : 
+          "flex flex-col gap-4"
+        }>
           {searchedProducts.map((product: Product) => (
             <div
               key={`${product.name}-${product.category}`}
-              className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+              className={`bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer ${
+                 viewMode === 'list' ? 'flex items-center' : ''
+               }`}
               onClick={() => setLocation(`/business/${business.id}/product/${(product as any).id}/${encodeURIComponent(product.name)}`)} // Add product ID to URL
             >
               {product.imageUrl && (
-                <div className="aspect-square overflow-hidden bg-gray-100">
+                <div className={`overflow-hidden bg-gray-100 ${
+                   viewMode === 'list' ? 'w-40 h-40 flex-shrink-0' : 'aspect-square'
+                 }`}>
                   <ImageViewer
                     imageUrl={product.imageUrl}
                     alt={product.name}
@@ -187,26 +218,29 @@ export default function ProductList({ params }: ProductListProps) {
                   />
                 </div>
               )}
-              <div className="p-3">
-                <h3 className="font-semibold truncate">{product.name}</h3>
-                <div className="flex items-center text-sm text-gray-500 mb-2">
+              <div className={`p-3 ${viewMode === 'list' ? 'flex-1' : ''}`}>
+                <h3 className="font-semibold truncate text-lg mb-2">{product.name}</h3>
+                <div className="flex items-center text-sm text-gray-500 mb-3">
                   {getCategoryIcon()}
                   <span>{product.category}</span>
                 </div>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-2">
                   {business.profileType === 'product_sales' && product.price !== null && product.price !== undefined && product.price !== 0 && (
-                    <span className="font-bold text-green-600">
+                    <span className={`font-bold text-green-600 ${viewMode === 'list' ? 'text-lg' : ''}`}>
                       ${product.price.toFixed(2)}
                     </span>
                   )}
-                  {business.profileType === 'product_sales' && (
-                    <Badge
-                      variant={product.inStock ? "default" : "secondary"}
-                      className={product.inStock ? "bg-green-100 text-green-800" : ""}
-                    >
-                      {product.inStock ? "In Stock" : "Out of Stock"}
-                    </Badge>
-                  )}
+                  <div className="flex items-center justify-between">
+                    {business.profileType === 'product_sales' && (
+                      <Badge
+                        variant={product.inStock ? "default" : "secondary"}
+                        className={product.inStock ? "bg-green-100 text-green-800" : ""}
+                      >
+                        {product.inStock ? "In Stock" : "Out of Stock"}
+                      </Badge>
+                    )}
+                    
+                  </div>
                 </div>
               </div>
             </div>
@@ -222,7 +256,7 @@ export default function ProductList({ params }: ProductListProps) {
         >
           Refresh Products
         </Button>
-        <a href="https://www.tiktok.com/@jamappz?_t=ZN-8yc6BiyK5uI&_r=1" target="_blank" rel="noopener noreferrer">
+        <a href="https://www.tiktok.com/@the_hub_ja?_t=ZN-8z4xvGMZONS&_r=1" target="_blank" rel="noopener noreferrer">
           <Button className="shadow-lg" variant="outline">
             Follow The Hub on TikTok
           </Button>

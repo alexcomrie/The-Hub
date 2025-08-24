@@ -1,6 +1,6 @@
 {
   "name": "rest-express",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
+    "axios": "^1.6.7",
+    "uuid": "^9.0.1",
+    "@types/uuid": "^9.0.8",
     "@emotion/styled": "^11.14.1",
     "@hookform/resolvers": "^3.10.0",
     "@jridgewell/trace-mapping": "^0.3.25",

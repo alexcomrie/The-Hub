@@ -4,13 +4,13 @@ A modern web application for a wide range services and products. Built with Type
 
 ## Features
 
-- Product catalog management
-- Business profile management
-- Shopping cart functionality
-- Order processing
-- Responsive design
+- Product catalog management with grid and list views
+- Business profile management with status controls
+- Shopping cart functionality and order processing
+- Responsive design and modern UI
 - Business status management (active, coming soon)
 - Category-based business organization
+- Enhanced error handling with validation flags
 
 ## Tech Stack
 
@@ -43,8 +43,8 @@ npm run dev
 
 ## Recent Updates
 
+- Added detailed list view for product pages with left-aligned images
 - Added 'coming soon' status for businesses
-- Improved TypeScript type definitions
 - Enhanced business profile visibility controls
 - Added category management system
 

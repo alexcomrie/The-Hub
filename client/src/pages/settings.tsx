@@ -4,9 +4,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft, Store, Github, Info } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
+
 export default function Settings() {
   const [, setLocation] = useLocation();
-  const appVersion = '1.0.0';
+  const appVersion = '1.1.0';
 
   return (
     <div className="min-h-screen bg-neutral">
@@ -27,6 +28,13 @@ export default function Settings() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-6 space-y-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>User Settings</CardTitle>
+          </CardHeader>
+          <CardContent>
+          </CardContent>
+        </Card>
         <Card>
           <CardHeader>
             <CardTitle>About The Hub</CardTitle>
