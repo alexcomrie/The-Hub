@@ -1,1 +1,1 @@
-git add . && git commit -m "resolve Page" && git push 
+git add . && git commit -m "resolve the Netlify 404 error for your Vite + React app" && git push 
