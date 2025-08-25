@@ -1,1 +1,1 @@
-git add . && git commit -m "resolve Page Not Found when you deploy" && git push 
+git add . && git commit -m "resolve Page" && git push 
