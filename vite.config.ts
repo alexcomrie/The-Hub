@@ -28,8 +28,8 @@ export default defineConfig({
     outDir: path.resolve(import.meta.dirname, "dist/client"),
     emptyOutDir: true,
     // Enable SSG
-    ssr: true,
-    ssrManifest: true,
+    ssr: false,
+    ssrManifest: false,
     // Configure build options
     rollupOptions: {
       input: {
