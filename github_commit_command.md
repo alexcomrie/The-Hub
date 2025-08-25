@@ -1,1 +1,1 @@
-git add . && git commit -m "resolved the Netlify build failure caused by module resolution errors in the Vite configuration" && git push 
+git add . && git commit -m "resolve the __dirname error in sitemap generation during build" && git push 

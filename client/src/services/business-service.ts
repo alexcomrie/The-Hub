@@ -125,6 +125,9 @@ function parseProductsCSV(csvText: string): Map<string, Product[]> {
 }
 
 async function loadBusinessesFromLocal(): Promise<Business[]> {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return [];
+  }
   try {
     const cached = localStorage.getItem('businesses');
     if (cached) {
@@ -138,6 +141,9 @@ async function loadBusinessesFromLocal(): Promise<Business[]> {
 }
 
 async function saveBusinessesToLocal(businesses: Business[]): Promise<void> {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return;
+  }
   try {
     localStorage.setItem('businesses', JSON.stringify(businesses));
   } catch (e) {
@@ -324,6 +330,9 @@ async function loadBusinesses(): Promise<Business[]> {
 }
 
 async function loadProductsFromLocal(productSheetUrl: string): Promise<Map<string, Product[]>> {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return new Map();
+  }
   try {
     const cacheKey = `products_${btoa(productSheetUrl)}`;
     console.log('Checking local storage with cache key:', cacheKey);
@@ -354,6 +363,9 @@ async function loadProductsFromLocal(productSheetUrl: string): Promise<Map<strin
 }
 
 async function saveProductsToLocal(productSheetUrl: string, products: Map<string, Product[]>): Promise<void> {
+  if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+    return;
+  }
   try {
     const cacheKey = `products_${btoa(productSheetUrl)}`;
     const productsObj = Object.fromEntries(products);

@@ -2,6 +2,7 @@ import { BusinessService } from '../client/src/services/business-service';
 import { Business, Product } from '../shared/schema';
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 /**
  * Generate a sitemap XML string from a list of URLs
@@ -86,6 +87,8 @@ async function generateSitemap(): Promise<string> {
 async function writeSitemap(): Promise<void> {
   try {
     const sitemap = await generateSitemap();
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
     const outputPath = path.resolve(__dirname, '../client/public/sitemap.xml');
     
     fs.writeFileSync(outputPath, sitemap);
