@@ -1,1 +1,1 @@
-git add . && git commit -m "resolve the Netlify 404 error for your Vite + React app" && git push 
+git add . && git commit -m "addressed the blank page issue on your Netlify deployment" && git push 
