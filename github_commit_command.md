@@ -1,1 +1,1 @@
-git add . && git commit -m " Review & Rating system (with Like / Dislike) that uses **Google Apps Script (GAS)** as a backend and **Google Sheets** as the database" && git push 
+git add . && git commit -m "Installing the missing scheduler package" && git push 
