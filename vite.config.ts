@@ -21,6 +21,7 @@ export default defineConfig({
       "@": path.resolve(import.meta.dirname, "client", "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      "scheduler": path.resolve(import.meta.dirname, "node_modules", "scheduler"),
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
@@ -78,6 +79,6 @@ export default defineConfig({
   },
   // Configure optimization options
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
+    include: ['react', 'react-dom', 'react-router-dom', 'scheduler']
   },
 });

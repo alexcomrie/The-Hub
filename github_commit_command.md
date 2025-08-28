@@ -1,1 +1,1 @@
-git add . && git commit -m "Installing the missing scheduler package" && git push 
+git add . && git commit -m "Adding scheduler to the Vite configuration" && git push 
