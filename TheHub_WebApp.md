@@ -10,6 +10,10 @@ TheHub is a web application designed to connect small-to-medium businesses, arti
 
 - **Framework**: React with TypeScript
 - **Build Tool**: Vite
+  - Custom module resolution for Netlify deployment
+  - Optimized dependency bundling with explicit paths
+  - SSR configuration for improved SEO
+  - Manual chunk splitting for performance
 - **Routing**: Wouter (lightweight alternative to React Router)
 - **State Management**: 
   - React Context API for application state (cart)
@@ -338,7 +342,75 @@ const UserSchema = z.object({
 
 ## Development and Deployment
 
-### Development and Deployment
+### Vite Configuration for Netlify
+
+The application uses a custom Vite configuration optimized for Netlify deployment:
+
+- **Module Resolution**: Explicit path mapping for all dependencies to prevent resolution issues
+  ```typescript
+  resolve: {
+    alias: {
+      "@": path.resolve(import.meta.dirname, "client", "src"),
+      "@shared": path.resolve(import.meta.dirname, "shared"),
+      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      "scheduler": path.resolve(import.meta.dirname, "node_modules", "scheduler"),
+      "wouter": path.resolve(import.meta.dirname, "node_modules", "wouter"),
+      // Additional module resolutions...
+    },
+  }
+  ```
+
+- **Dependency Optimization**: Explicit inclusion of dependencies for better bundling
+  ```typescript
+  optimizeDeps: {
+    include: [
+      'react', 'react-dom', 'react-router-dom', 'scheduler', 'wouter',
+      // Additional dependencies...
+    ]
+  }
+  ```
+
+- **Build Configuration**: SSR and manual chunk splitting for improved performance
+  ```typescript
+  build: {
+    outDir: path.resolve(import.meta.dirname, "dist/client"),
+    emptyOutDir: true,
+    ssr: true,
+    ssrManifest: true,
+    rollupOptions: {
+      input: {
+        app: path.resolve(import.meta.dirname, 'client/index.html'),
+        // Additional entry points...
+      },
+      output: {
+        manualChunks: {
+          'utils': ['./lib/utils/analytics.ts'],
+          'components': ['./lib/components/OptimizedImage.tsx']
+        }
+      }
+    }
+  }
+  ```
+
+### Netlify Configuration
+
+The application is configured for deployment on Netlify with the following settings in `netlify.toml`:
+
+```toml
+[build]
+  publish = "dist/client"
+  command = "npm run build && npm run generate-sitemap"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Content-Type = "application/javascript"
+```
 
 ### Development Scripts
 
@@ -352,6 +424,10 @@ const UserSchema = z.object({
 ### Development Environment
 
 - **Vite**: Fast development server with HMR
+  - Custom module resolution for Netlify deployment
+  - Optimized dependency handling with explicit module paths
+  - SSR configuration for improved SEO and performance
+  - Manual chunk splitting for optimized loading
 - **TypeScript**: Static type checking for better code quality
 - **ESLint**: Code linting for consistency
 - **Tailwind CSS**: Utility-first CSS framework
@@ -359,7 +435,11 @@ const UserSchema = z.object({
 
 ### Deployment Options
 
-- **Vercel**: Primary deployment platform
+- **Netlify**: Primary deployment platform with custom configuration
+  - Custom build command: `npm run build && npm run generate-sitemap`
+  - Publish directory: `dist/client`
+  - Automatic redirects to handle SPA routing
+  - Custom headers for JavaScript content type
 - **Static Export**: Option for static site hosting
 - **Docker**: Containerization support for alternative deployments
 - **Environment Variables**: Configuration for different environments
@@ -382,9 +462,11 @@ Key strengths of the implementation include:
 
 6. **Performance Focus**: Image optimization, code splitting, and caching strategies create a fast, responsive user experience.
 
+7. **Optimized Deployment**: Custom Vite configuration with explicit module resolutions ensures reliable deployment on Netlify with proper dependency bundling and SSR support.
+
 Future enhancements could include:
 
-1. Server-side rendering for improved initial load performance and SEO
+1. Further optimization of server-side rendering capabilities
 2. Integration with a proper database for more complex data relationships
 3. User authentication and personalized experiences
 4. Advanced analytics and business insights

@@ -32,7 +32,10 @@ export default defineConfig({
       "@mui/material": path.resolve(import.meta.dirname, "node_modules", "@mui/material"),
       "framer-motion": path.resolve(import.meta.dirname, "node_modules", "framer-motion"),
       "react-helmet": path.resolve(import.meta.dirname, "node_modules", "react-helmet"),
-      "zod": path.resolve(import.meta.dirname, "node_modules", "zod")
+      "zod": path.resolve(import.meta.dirname, "node_modules", "zod"),
+      "use-sync-external-store/shim/index.js": path.resolve(import.meta.dirname, "node_modules", "use-sync-external-store", "shim", "index.js"),
+      "use-sync-external-store/shim": path.resolve(import.meta.dirname, "node_modules", "use-sync-external-store", "shim"),
+      "use-sync-external-store": path.resolve(import.meta.dirname, "node_modules", "use-sync-external-store")
     },
   },
   optimizeDeps: {
@@ -48,12 +51,15 @@ export default defineConfig({
       '@mui/material',
       'framer-motion',
       'react-helmet',
-      'zod'
+      'zod',
+      'use-sync-external-store',
+      'use-sync-external-store/shim',
+      'use-sync-external-store/shim/index.js'
     ]
   },
   root: path.resolve(import.meta.dirname, "client"),
   ssr: {
-    noExternal: ['react', 'react-dom', 'react/jsx-runtime']
+    noExternal: ['react', 'react-dom', 'react/jsx-runtime', 'use-sync-external-store', 'use-sync-external-store/shim', 'use-sync-external-store/shim/index.js']
   },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/client"),
