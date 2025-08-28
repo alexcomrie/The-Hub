@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/providers/cart-provider";
+import { UsernameProvider } from "@/providers/username-provider";
 
 import { refreshService } from "@/services/refresh-service";
 import { useEffect } from "react";
@@ -42,12 +43,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
+        <UsernameProvider>
           <TooltipProvider>
-          <div className="min-h-screen bg-neutral">
-            <Toaster />
-            <Router />
-          </div>
+            <div className="min-h-screen bg-neutral">
+              <Toaster />
+              <Router />
+            </div>
           </TooltipProvider>
+        </UsernameProvider>
       </CartProvider>
     </QueryClientProvider>
   );

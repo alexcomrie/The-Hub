@@ -11,6 +11,9 @@ import ImageViewer from "@/components/image-viewer";
 import { QuantitySelector } from "@/components/quantity-selector";
 import { useToast } from "@/hooks/use-toast";
 import SEOHead from "../components/SEOHead";
+import { ReviewForm } from "@/components/review-form";
+import { ReviewList } from "@/components/review-list";
+import { ReviewSummary } from "@/components/review-summary";
 
 
 interface ProductDetailsProps {
@@ -235,6 +238,18 @@ export default function ProductDetails({ params }: ProductDetailsProps) {
             </div>
 
             {/* Review System */}
+            <div className="mt-8 space-y-6">
+              <div className="border-t pt-6">
+                <h3 className="text-xl font-semibold mb-4">Reviews</h3>
+                <div className="mb-6">
+                  <ReviewSummary productId={product.id} businessId={business.id} />
+                </div>
+                <div className="mb-6">
+                  <ReviewForm productId={product.id} businessId={business.id} />
+                </div>
+                <ReviewList productId={product.id} businessId={business.id} />
+              </div>
+            </div>
             
           </CardContent>
         </Card>

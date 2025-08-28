@@ -24,12 +24,15 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
+  ssr: {
+    noExternal: ['react', 'react-dom', 'react/jsx-runtime']
+  },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/client"),
     emptyOutDir: true,
     // Enable SSG
-    ssr: false,
-    ssrManifest: false,
+    ssr: true,
+    ssrManifest: true,
     // Configure build options
     rollupOptions: {
       input: {

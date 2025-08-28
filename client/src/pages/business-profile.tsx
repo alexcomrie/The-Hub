@@ -7,6 +7,9 @@ import { useBusiness } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "@/components/image-viewer";
 import SEOHead from "../components/SEOHead";
+import { BusinessVote } from "@/components/business-vote";
+import { UsernameModal } from "@/components/username-modal";
+import { useUsername } from "@/providers/username-provider";
 
 
 interface BusinessProfileProps {
@@ -17,6 +20,8 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
   const [, setLocation] = useLocation();
   const { data: business, isLoading } = useBusiness(params.id);
   const { itemCount } = useCart();
+  const { username } = useUsername();
+  const [showUsernameModal, setShowUsernameModal] = useState(false);
   const status = business?.status.toLowerCase();
 
   if (isLoading) {
@@ -142,8 +147,10 @@ export default function BusinessProfile({ params }: BusinessProfileProps) {
                 <p className="text-base leading-relaxed">{business.bio}</p>
               </div>
             )}
-            {/* Add BusinessRating component */}
-            
+            <div className="mt-4">
+              <BusinessVote businessId={business.id} />
+            </div>
+            <UsernameModal isOpen={showUsernameModal} onClose={() => setShowUsernameModal(false)} />
           </CardContent>
         </Card>
 

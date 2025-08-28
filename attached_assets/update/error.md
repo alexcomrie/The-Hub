@@ -1,0 +1,721 @@
+:3000/all-businesses:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=levy%27s_nature%27s_pure&username=the+hub%28pc%29' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+vote-service.ts:31  GET https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=levy%27s_nature%27s_pure&username=the+hub%28pc%29 net::ERR_FAILED 404 (Not Found)
+getVotes @ vote-service.ts:31
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+vote-service.ts:46 Error fetching votes: TypeError: Failed to fetch
+    at getVotes (vote-service.ts:31:28)
+    at queryFn (use-votes.ts:16:20)
+    at Object.fetchFn [as fn] (@tanstack_react-query.js?v=ef1a98cd:840:14)
+    at run (@tanstack_react-query.js?v=ef1a98cd:494:49)
+    at Object.start (@tanstack_react-query.js?v=ef1a98cd:536:9)
+    at _a4.fetch (@tanstack_react-query.js?v=ef1a98cd:926:41)
+    at _a9.executeFetch_fn (@tanstack_react-query.js?v=ef1a98cd:2211:51)
+    at _a9.onSubscribe (@tanstack_react-query.js?v=ef1a98cd:1898:74)
+    at _a9.subscribe (@tanstack_react-query.js?v=ef1a98cd:24:10)
+    at @tanstack_react-query.js?v=ef1a98cd:3022:60
+getVotes @ vote-service.ts:46
+await in getVotes
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+:3000/all-businesses:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=jeffery_flowers_supplies&username=the+hub%28pc%29' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+vote-service.ts:31  GET https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=jeffery_flowers_supplies&username=the+hub%28pc%29 net::ERR_FAILED 500 (Internal Server Error)
+getVotes @ vote-service.ts:31
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+vote-service.ts:46 Error fetching votes: TypeError: Failed to fetch
+    at getVotes (vote-service.ts:31:28)
+    at queryFn (use-votes.ts:16:20)
+    at Object.fetchFn [as fn] (@tanstack_react-query.js?v=ef1a98cd:840:14)
+    at run (@tanstack_react-query.js?v=ef1a98cd:494:49)
+    at Object.start (@tanstack_react-query.js?v=ef1a98cd:536:9)
+    at _a4.fetch (@tanstack_react-query.js?v=ef1a98cd:926:41)
+    at _a9.executeFetch_fn (@tanstack_react-query.js?v=ef1a98cd:2211:51)
+    at _a9.onSubscribe (@tanstack_react-query.js?v=ef1a98cd:1898:74)
+    at _a9.subscribe (@tanstack_react-query.js?v=ef1a98cd:24:10)
+    at @tanstack_react-query.js?v=ef1a98cd:3022:60
+getVotes @ vote-service.ts:46
+await in getVotes
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+business-service.ts:35  HEAD https://lh3.googleusercontent.com/d/1w9Qxq1x3_deioN4WzbpEaKgpyj9rA9On net::ERR_ABORTED 429 (Too Many Requests)
+testDirectImageUrl @ business-service.ts:35
+(anonymous) @ image-viewer.tsx:44
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+image-viewer.tsx:69 Image failed to load: https://drive.google.com/file/d/1JqzzF-TNlzaLNvKBwpDXkx_IchIVdZQf/view?usp=drive_link
+handleError @ image-viewer.tsx:69
+handleError @ optimized-image.tsx:56
+callCallback2 @ chunk-RPCDYKBN.js?v=ef1a98cd:3674
+invokeGuardedCallbackDev @ chunk-RPCDYKBN.js?v=ef1a98cd:3699
+invokeGuardedCallback @ chunk-RPCDYKBN.js?v=ef1a98cd:3733
+invokeGuardedCallbackAndCatchFirstError @ chunk-RPCDYKBN.js?v=ef1a98cd:3736
+executeDispatch @ chunk-RPCDYKBN.js?v=ef1a98cd:7014
+processDispatchQueueItemsInOrder @ chunk-RPCDYKBN.js?v=ef1a98cd:7034
+processDispatchQueue @ chunk-RPCDYKBN.js?v=ef1a98cd:7043
+dispatchEventsForPlugins @ chunk-RPCDYKBN.js?v=ef1a98cd:7051
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:7174
+batchedUpdates$1 @ chunk-RPCDYKBN.js?v=ef1a98cd:18913
+batchedUpdates @ chunk-RPCDYKBN.js?v=ef1a98cd:3579
+dispatchEventForPluginEventSystem @ chunk-RPCDYKBN.js?v=ef1a98cd:7173
+dispatchEventWithEnableCapturePhaseSelectiveHydrationWithoutDiscreteEventReplay @ chunk-RPCDYKBN.js?v=ef1a98cd:5478
+dispatchEvent @ chunk-RPCDYKBN.js?v=ef1a98cd:5472
+:3000/all-businesses:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=shadea%27z_natural_beauty_essentials&username=the+hub%28pc%29' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+vote-service.ts:31  GET https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=shadea%27z_natural_beauty_essentials&username=the+hub%28pc%29 net::ERR_FAILED 404 (Not Found)
+getVotes @ vote-service.ts:31
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1902
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+vote-service.ts:46 Error fetching votes: TypeError: Failed to fetch
+    at getVotes (vote-service.ts:31:28)
+    at queryFn (use-votes.ts:16:20)
+    at Object.fetchFn [as fn] (@tanstack_react-query.js?v=ef1a98cd:840:14)
+    at run (@tanstack_react-query.js?v=ef1a98cd:494:49)
+    at Object.start (@tanstack_react-query.js?v=ef1a98cd:536:9)
+    at _a4.fetch (@tanstack_react-query.js?v=ef1a98cd:926:41)
+    at _a9.executeFetch_fn (@tanstack_react-query.js?v=ef1a98cd:2211:51)
+    at @tanstack_react-query.js?v=ef1a98cd:2245:72
+getVotes @ vote-service.ts:46
+await in getVotes
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1902
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+:3000/all-businesses:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=levy%27s_nature%27s_pure&username=the+hub%28pc%29' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+vote-service.ts:31  GET https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=levy%27s_nature%27s_pure&username=the+hub%28pc%29 net::ERR_FAILED 500 (Internal Server Error)
+getVotes @ vote-service.ts:31
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onQueryUpdate @ @tanstack_react-query.js?v=ef1a98cd:2206
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:998
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:997
+batch @ @tanstack_react-query.js?v=ef1a98cd:583
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+vote-service.ts:46 Error fetching votes: TypeError: Failed to fetch
+    at getVotes (vote-service.ts:31:28)
+    at queryFn (use-votes.ts:16:20)
+    at Object.fetchFn [as fn] (@tanstack_react-query.js?v=ef1a98cd:840:14)
+    at run (@tanstack_react-query.js?v=ef1a98cd:494:49)
+    at Object.start (@tanstack_react-query.js?v=ef1a98cd:536:9)
+    at _a4.fetch (@tanstack_react-query.js?v=ef1a98cd:926:41)
+    at _a9.executeFetch_fn (@tanstack_react-query.js?v=ef1a98cd:2211:51)
+    at @tanstack_react-query.js?v=ef1a98cd:2245:72
+getVotes @ vote-service.ts:46
+await in getVotes
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onQueryUpdate @ @tanstack_react-query.js?v=ef1a98cd:2206
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:998
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:997
+batch @ @tanstack_react-query.js?v=ef1a98cd:583
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+:3000/all-businesses:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=jeffery_flowers_supplies&username=the+hub%28pc%29' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+vote-service.ts:31  GET https://script.google.com/macros/s/AKfycbxBWHasX_FJxZFUhbwNe6GBQT0_8VEGJhNUi-05ZKf5uDZoIRB0QLt_jcPYoaJfJ3Yx/exec?action=getVotes&businessId=jeffery_flowers_supplies&username=the+hub%28pc%29 net::ERR_FAILED 500 (Internal Server Error)
+getVotes @ vote-service.ts:31
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onQueryUpdate @ @tanstack_react-query.js?v=ef1a98cd:2206
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:998
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:997
+batch @ @tanstack_react-query.js?v=ef1a98cd:583
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+vote-service.ts:46 Error fetching votes: TypeError: Failed to fetch
+    at getVotes (vote-service.ts:31:28)
+    at queryFn (use-votes.ts:16:20)
+    at Object.fetchFn [as fn] (@tanstack_react-query.js?v=ef1a98cd:840:14)
+    at run (@tanstack_react-query.js?v=ef1a98cd:494:49)
+    at Object.start (@tanstack_react-query.js?v=ef1a98cd:536:9)
+    at _a4.fetch (@tanstack_react-query.js?v=ef1a98cd:926:41)
+    at _a9.executeFetch_fn (@tanstack_react-query.js?v=ef1a98cd:2211:51)
+    at @tanstack_react-query.js?v=ef1a98cd:2245:72
+getVotes @ vote-service.ts:46
+await in getVotes
+queryFn @ use-votes.ts:16
+fetchFn @ @tanstack_react-query.js?v=ef1a98cd:840
+run @ @tanstack_react-query.js?v=ef1a98cd:494
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:2245
+setInterval
+updateRefetchInterval_fn @ @tanstack_react-query.js?v=ef1a98cd:2243
+updateTimers_fn @ @tanstack_react-query.js?v=ef1a98cd:2250
+onQueryUpdate @ @tanstack_react-query.js?v=ef1a98cd:2206
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:998
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:997
+batch @ @tanstack_react-query.js?v=ef1a98cd:583
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627
+setTimeout
+scheduleFn @ @tanstack_react-query.js?v=ef1a98cd:555
+flush @ @tanstack_react-query.js?v=ef1a98cd:569
+batch @ @tanstack_react-query.js?v=ef1a98cd:587
+dispatch_fn @ @tanstack_react-query.js?v=ef1a98cd:996
+setData @ @tanstack_react-query.js?v=ef1a98cd:696
+onSuccess @ @tanstack_react-query.js?v=ef1a98cd:897
+resolve @ @tanstack_react-query.js?v=ef1a98cd:456
+Promise.then
+run @ @tanstack_react-query.js?v=ef1a98cd:498
+start @ @tanstack_react-query.js?v=ef1a98cd:536
+fetch @ @tanstack_react-query.js?v=ef1a98cd:926
+executeFetch_fn @ @tanstack_react-query.js?v=ef1a98cd:2211
+onSubscribe @ @tanstack_react-query.js?v=ef1a98cd:1898
+subscribe @ @tanstack_react-query.js?v=ef1a98cd:24
+(anonymous) @ @tanstack_react-query.js?v=ef1a98cd:3022
+subscribeToStore @ chunk-RPCDYKBN.js?v=ef1a98cd:11984
+commitHookEffectListMount @ chunk-RPCDYKBN.js?v=ef1a98cd:16915
+commitPassiveMountOnFiber @ chunk-RPCDYKBN.js?v=ef1a98cd:18156
+commitPassiveMountEffects_complete @ chunk-RPCDYKBN.js?v=ef1a98cd:18129
+commitPassiveMountEffects_begin @ chunk-RPCDYKBN.js?v=ef1a98cd:18119
+commitPassiveMountEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:18109
+flushPassiveEffectsImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19490
+flushPassiveEffects @ chunk-RPCDYKBN.js?v=ef1a98cd:19447
+commitRootImpl @ chunk-RPCDYKBN.js?v=ef1a98cd:19416
+commitRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:19277
+performSyncWorkOnRoot @ chunk-RPCDYKBN.js?v=ef1a98cd:18895
+flushSyncCallbacks @ chunk-RPCDYKBN.js?v=ef1a98cd:9119
+(anonymous) @ chunk-RPCDYKBN.js?v=ef1a98cd:18627

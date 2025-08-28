@@ -1,14 +1,22 @@
 import { useState } from "react";
-import { LayoutGrid, List } from "lucide-react";
 import { useLocation } from "wouter";
+import { LayoutGrid, List, ArrowLeft, Home, ShoppingCart, Plus, Package, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Home, ShoppingCart, Plus, Package } from "lucide-react";
 import { useBusiness, useBusinessProducts, useRefreshBusinesses } from "@/hooks/use-businesses";
 import { useCart } from "@/providers/cart-provider";
 import { Product } from "@shared/schema";
 import ImageViewer from "@/components/image-viewer";
+import { useProductReviewSummary } from "@/hooks/use-reviews";
+
+// ReviewCount component
+function ReviewCount({ productId, businessId }: { productId: string; businessId: string }) {
+  const { summary } = useProductReviewSummary(productId, businessId);
+  return <span className="text-sm">{summary?.totalReviews || 0}</span>;
+}
+
+
 
 interface ProductListProps {
   params: { id: string };
@@ -203,7 +211,7 @@ export default function ProductList({ params }: ProductListProps) {
               className={`bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer ${
                  viewMode === 'list' ? 'flex items-center' : ''
                }`}
-              onClick={() => setLocation(`/business/${business.id}/product/${(product as any).id}/${encodeURIComponent(product.name)}`)} // Add product ID to URL
+              onClick={() => setLocation(`/business/${business.id}/product/${product.id}/${encodeURIComponent(product.name)}`)}
             >
               {product.imageUrl && (
                 <div className={`overflow-hidden bg-gray-100 ${
@@ -231,15 +239,21 @@ export default function ProductList({ params }: ProductListProps) {
                     </span>
                   )}
                   <div className="flex items-center justify-between">
-                    {business.profileType === 'product_sales' && (
-                      <Badge
-                        variant={product.inStock ? "default" : "secondary"}
-                        className={product.inStock ? "bg-green-100 text-green-800" : ""}
-                      >
-                        {product.inStock ? "In Stock" : "Out of Stock"}
-                      </Badge>
-                    )}
-                    
+                    <div className="flex items-center gap-2">
+                      {business.profileType === 'product_sales' && (
+                        <Badge
+                          variant={product.inStock ? "default" : "secondary"}
+                          className={product.inStock ? "bg-green-100 text-green-800" : ""}
+                        >
+                          {product.inStock ? "In Stock" : "Out of Stock"}
+                        </Badge>
+                      )}
+                      {/* Review count with chat bubble icon */}
+                       <div className="flex items-center gap-1 text-gray-600">
+                         <MessageCircle className="h-4 w-4" />
+                         <ReviewCount productId={product.id} businessId={business.id} />
+                       </div>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,76 +1,62 @@
-Troubleshooting Netlify 404 for a Vite + React Site
+business/shadea'z_na…beauty_essentials:1 Access to fetch at 'https://script.google.com/macros/s/AKfycbzHe0uNOxH9SJd61XqU-92Xs41wmS184IZI…ction=vote&businessId=shadea%27z_natural_beauty_essentials&username=alexc1' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: It does not have HTTP ok status.
+Explanation
 
-Step 1: Verify Build Settings & Output. Ensure Netlify is actually building your app and publishing the correct folder. In your Netlify settings (or netlify.toml), set the build command to npm run build (assuming your package.json has "build": "vite build") and set the publish directory to dist – Vite’s default output folder
-v4.vitejs.dev
-answers.netlify.com
-. For example in netlify.toml you might have:
+Understanding the problem
+This error indicates that your browser, running code from http://localhost:3000, is trying to make a request to a different origin (https://script.google.com). This is a "cross-origin" request, and for security reasons, browsers restrict these types of requests unless the server receiving the request explicitly allows them.
 
-[build]
-  command = "npm run build"
-  publish = "dist"
+The error specifically mentions "preflight request" and "doesn't pass access control check: It does not have HTTP ok status". Before making the actual request (a fetch in this case), the browser sends a "preflight" OPTIONS request to the server to check if the server will allow the actual request. The preflight request failed because the server at https://script.google.com/macros/... did not respond with a successful HTTP status code (an "HTTP ok status", typically in the 2xx range). This means the server, in this case a Google Apps Script, is not set up to handle the necessary CORS preflight checks correctly for requests coming from your origin.
 
+Suggested fix
+The issue is on the server side (the Google Apps Script). You need to modify the Apps Script to handle the OPTIONS preflight request and respond with the appropriate CORS headers. Google Apps Script provides a doOptions(e) function that can handle this.
 
-Netlify will then run the Vite build and deploy the files in dist. A common pitfall is omitting the build command or misnaming the publish folder. As one Netlify support thread notes, setting the command to npm run build and publish to dist “should solve” the 404 issue when no site is building
-answers.netlify.com
-. (Make sure your dist folder actually appears after a local npm run build – Vite defaults to placing built files there
-v4.vitejs.dev
-.)
+Add the following function to your Google Apps Script:
 
-Step 2: Add SPA Redirects. React apps with client‐side routing need a fallback rule so that all routes serve index.html. Otherwise, navigating or refreshing any path other than / yields a Netlify 404. There are two common solutions:
+function doOptions(e) {
+  // This function handles CORS preflight requests.
+  // It's necessary for complex cross-origin requests (like POST requests
+  // with custom headers) from a browser.
 
-Using _redirects file: Create a file named _redirects in your public/ folder (Vite will copy this to dist). Put exactly one line:
+  // Return a successful response with CORS headers.
+  // The `Access-Control-Allow-Origin` should be set to the origin(s) you want to allow.
+  // Using '*' allows requests from any origin, which is suitable for testing
+  // or publicly accessible APIs, but consider specifying your exact origin(s)
+  // in production for better security.
+  // The `Access-Control-Allow-Methods` should list the HTTP methods you will
+  // allow in the actual request (e.g., 'GET', 'POST').
+  // The `Access-Control-Allow-Headers` should list any custom headers you are
+  // sending with your actual request.
+  var headers = {
+    'Access-Control-Allow-Origin': '*', // Or specify your domain: 'http://localhost:3000'
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type', // Add any other headers you are sending
+    'Access-Control-Max-Age': 86400 // Cache preflight response for 24 hours
+  };
 
-/*    /index.html   200
+  var response = ContentService.createTextOutput('');
+  for (var h in headers) {
+    response.setHeader(h, headers[h]);
+  }
+  return response;
+}
 
+// Ensure your doPost or doGet function also includes the
+// Access-Control-Allow-Origin header in its response.
+function doPost(e) {
+  // ... your existing doPost code ...
 
-This tells Netlify to serve index.html for any URL path. (Vite will bundle this into your site so Netlify sees it at deploy time.) For example, Hrishikesh Kokate points out that you should create public/_redirects with the content /* /index.html 200
-stackoverflow.com
-.
+  var output = ContentService.createTextOutput(JSON.stringify({ success: true }));
+  output.setHeader('Access-Control-Allow-Origin', '*'); // Ensure this header is also present
+  return output;
+}
 
-Using netlify.toml redirects: Alternatively, you can define redirects in netlify.toml. In the repo root, add:
+Make sure you deploy your Apps Script as a web app with the correct permissions after adding the doOptions function and updating your doPost (or doGet) function to include the Access-Control-Allow-Origin header in the response.
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+Summary
+The CORS error occurs because the Google Apps Script, acting as a server, is not configured to handle the browser's preflight OPTIONS request, which is required for cross-origin fetch requests. Adding a doOptions function to your Apps Script that returns a successful response with the appropriate Access-Control-Allow-Origin, Access-Control-Allow-Methods, and Access-Control-Allow-Headers is the standard way to fix this. You also need to ensure your main request handler (doPost or doGet) includes the Access-Control-Allow-Origin header in its response.
 
-
-This has the same effect: any path falls back to index.html. (Martijn Pieters confirms that a netlify.toml with [[redirects]] from="/*" to="/index.html" status=200 is the recommended fix
-stackoverflow.com
-.)
-
-These rules catch all routes and prevent Netlify’s 404 page on refresh or deep links. (If you were using a HashRouter instead of BrowserRouter, you wouldn’t need this – but most React apps use client routing and need a redirect.)
-
-Step 3: Check Vite’s base (public path). Vite’s base option (in vite.config.js/ts) controls the public URL path for assets. By default it is '/'. If you have set base to a sub-path (for example for GitHub Pages) it can break your Netlify deploy. For a Netlify site at root (e.g. yoursite.netlify.app), remove or reset any custom base so it is /. In one case, a user had base: "/Portfolio/" and Netlify did not generate a Portfolio folder in dist, causing a blank page – the fix was simply “Set your base to the default of /”
-answers.netlify.com
-. Similarly, another report shows removing a base entry (like '/videoteka/') fixed a Vite 404 on Netlify
-answers.netlify.com
-. In short, ensure vite.config.js does not hardcode a wrong base path. For a root deployment, you can omit base or set it to "/".
-
-Step 4: Example netlify.toml. Putting it all together, your netlify.toml might look like this:
-
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-# Rewrite all routes to index.html for React Router (SPA)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-
-This tells Netlify how to build and deploy the site, and ensures any client-side route loads index.html instead of a 404. If you prefer _redirects, you can omit the [[redirects]] block and use the file as described above.
-
-Additional Tips: If your project is in a subfolder (e.g. a monorepo), make sure to set Netlify’s “Base directory” (in the UI or netlify.toml [build] base) to point at the folder containing package.json and your code. Also check that your package.json has a proper "build" script (e.g. "vite build") so Netlify can run it. With these fixes – correct build command, publish folder, SPA redirects, and proper Vite base – the site should deploy without the Netlify 404 error
-answers.netlify.com
-stackoverflow.com
-.
-
-References: Netlify’s docs and community show that missing build settings or redirects are the usual culprits for a 404 on Vite+React apps
-answers.netlify.com
-stackoverflow.com
-stackoverflow.com
-. The Vite guide also notes dist as the default output (deploy this folder)
-v4.vitejs.dev
-. These steps ensure Netlify serves your React single-page app correctly.
+Sources and related content
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
+https://discuss.google.dev/t/google-apps-script-form-to-sheets-cors-issue/184486
+Data used to understand this message
+Use search instead
+AI tools may generate inaccurate info that doesn't represent Google's views. Data sent to Google may be seen by human reviewers to improve this feature. Open settings or learn more

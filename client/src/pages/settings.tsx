@@ -1,12 +1,18 @@
 import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Store, Github, Info } from "lucide-react";
+import { ArrowLeft, Store, Github, Info, User, Edit2 } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { useUsername } from "@/providers/username-provider";
+import { UsernameModal } from "@/components/username-modal";
+import { format } from "date-fns";
+import { useState } from "react";
 
 
 export default function Settings() {
   const [, setLocation] = useLocation();
+  const { username, lastUsernameChange } = useUsername();
+  const [isUsernameModalOpen, setIsUsernameModalOpen] = useState(false);
   const appVersion = '1.1.0';
 
   return (
@@ -32,7 +38,37 @@ export default function Settings() {
           <CardHeader>
             <CardTitle>User Settings</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-medium">Username</h3>
+                  <p className="text-sm text-gray-500">{username || 'Not set'}</p>
+                </div>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setIsUsernameModalOpen(true)}
+              >
+                <Edit2 className="w-4 h-4 mr-2" />
+                Change
+              </Button>
+            </div>
+            {lastUsernameChange && (
+              <p className="text-sm text-gray-500">
+                Last changed: {format(new Date(lastUsernameChange), 'MMM d, yyyy')}
+              </p>
+            )}
+
+            {/* Username Modal */}
+            <UsernameModal
+              isOpen={isUsernameModalOpen}
+              onClose={() => setIsUsernameModalOpen(false)}
+            />
           </CardContent>
         </Card>
         <Card>

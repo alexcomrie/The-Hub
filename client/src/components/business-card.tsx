@@ -7,6 +7,7 @@ import { Store, RefreshCw } from "lucide-react";
 import { useCart } from "@/providers/cart-provider";
 import ImageViewer from "./image-viewer";
 import { isBusinessOpen } from "@/lib/utils";
+import { BusinessVote } from "./business-vote";
 
 interface BusinessCardProps {
   business: Business;
@@ -114,8 +115,13 @@ export default function BusinessCard({ business, onRefresh, lastRefreshTime = Da
           )}
         </div>
         
+        {/* Business Vote */}
+        <div className="mt-4 mb-4">
+          <BusinessVote businessId={business.id} />
+        </div>
+
         {/* Action Buttons */}
-        <div className="mt-4 flex gap-2">
+        <div className="flex gap-2">
           <Button 
             variant="outline" 
             size="sm" 

@@ -1,1 +1,1 @@
-git add . && git commit -m "addressed the blank page issue on your Netlify deployment" && git push 
+git add . && git commit -m " Review & Rating system (with Like / Dislike) that uses **Google Apps Script (GAS)** as a backend and **Google Sheets** as the database" && git push 

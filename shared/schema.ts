@@ -79,6 +79,33 @@ export const UserSchema = z.object({
 
 export const InsertUserSchema = UserSchema.omit({ id: true });
 
+// Username Schema for the Review & Rating system
+export const UsernameSchema = z.object({
+  username: z.string().min(3).max(30),
+  createdAt: z.number(), // timestamp
+  lastUpdatedAt: z.number(), // timestamp
+});
+
+// Business Vote Schema for the Review & Rating system
+export const BusinessVoteSchema = z.object({
+  businessId: z.string(),
+  username: z.string(),
+  vote: z.enum(['like', 'dislike']),
+  timestamp: z.number(),
+});
+
+// Product Review Schema for the Review & Rating system
+export const ProductReviewSchema = z.object({
+  id: z.string(),
+  productId: z.string(),
+  businessId: z.string(),
+  username: z.string(),
+  rating: z.number().min(1).max(5),
+  comment: z.string().max(500),
+  createdAt: z.number(),
+  timestamp: z.number(),
+});
+
 export type Business = z.infer<typeof BusinessSchema>;
 export type Product = z.infer<typeof ProductSchema>;
 export type CartItem = z.infer<typeof CartItemSchema>;
@@ -86,3 +113,6 @@ export type Cart = z.infer<typeof CartSchema>;
 export type User = z.infer<typeof UserSchema>;
 export type InsertUser = z.infer<typeof InsertUserSchema>;
 export type Category = z.infer<typeof CategorySchema>;
+export type Username = z.infer<typeof UsernameSchema>;
+export type BusinessVote = z.infer<typeof BusinessVoteSchema>;
+export type ProductReview = z.infer<typeof ProductReviewSchema>;
