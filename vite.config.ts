@@ -64,9 +64,8 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/client"),
     emptyOutDir: true,
-    // Enable SSG
-    ssr: true,
-    ssrManifest: true,
+    // Disable SSR to resolve bare module specifier errors
+    ssr: false,
     // Configure build options
     rollupOptions: {
       input: {
