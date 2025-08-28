@@ -22,6 +22,7 @@ export default defineConfig({
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
       "scheduler": path.resolve(import.meta.dirname, "node_modules", "scheduler"),
+      "wouter": path.resolve(import.meta.dirname, "node_modules", "wouter"),
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
@@ -79,6 +80,6 @@ export default defineConfig({
   },
   // Configure optimization options
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'scheduler']
+    include: ['react', 'react-dom', 'react-router-dom', 'scheduler', 'wouter']
   },
 });

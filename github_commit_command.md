@@ -1,1 +1,1 @@
-git add . && git commit -m "Adding scheduler to the Vite configuration" && git push 
+git add . && git commit -m "resolved the wouter module resolution error" && git push 
