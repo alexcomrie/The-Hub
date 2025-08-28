@@ -1,7 +1,7 @@
 import { BusinessVote } from '@shared/schema';
 
 // API endpoint for votes
-const VOTE_API_URL = 'https://script.google.com/macros/s/AKfycbwswnOZV1kZjYMvNZ-09fivoFBDU3TTEDE9ij_oh-izfTPQpGT_DroN8T4I3rbNSM2Z/exec';
+const VOTE_API_URL = 'https://script.google.com/macros/s/AKfycbwEIF7RANRuC1CFFg6r6gnPolabEyAEFffTdBZHnAt8jiHSdNCLRafw4-pT_gluSJh-/exec';
 
 // Response interface for vote API
 export interface VoteResponse {
