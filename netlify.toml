@@ -3,6 +3,12 @@
   command = "npm run build && npm run generate-sitemap"
 
 [[redirects]]
+  from = "/api/google-script/*"
+  to = "https://script.google.com/macros/s/AKfycbwEIF7RANRuC1CFFg6r6gnPolabEyAEFffTdBZHnAt8jiHSdNCLRafw4-pT_gluSJh-/exec/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
