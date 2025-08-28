@@ -1,1 +1,1 @@
-git add . && git commit -m "resolved the regexparam module resolution error" && git push 
+git add . && git commit -m "update the Vite configuration to include all necessary module resolutions for Netlify deployment" && git push 

@@ -24,7 +24,32 @@ export default defineConfig({
       "scheduler": path.resolve(import.meta.dirname, "node_modules", "scheduler"),
       "wouter": path.resolve(import.meta.dirname, "node_modules", "wouter"),
       "regexparam": path.resolve(import.meta.dirname, "node_modules", "regexparam"),
+      "react": path.resolve(import.meta.dirname, "node_modules", "react"),
+      "react-dom": path.resolve(import.meta.dirname, "node_modules", "react-dom"),
+      "react-router-dom": path.resolve(import.meta.dirname, "node_modules", "react-router-dom"),
+      "@emotion/react": path.resolve(import.meta.dirname, "node_modules", "@emotion/react"),
+      "@emotion/styled": path.resolve(import.meta.dirname, "node_modules", "@emotion/styled"),
+      "@mui/material": path.resolve(import.meta.dirname, "node_modules", "@mui/material"),
+      "framer-motion": path.resolve(import.meta.dirname, "node_modules", "framer-motion"),
+      "react-helmet": path.resolve(import.meta.dirname, "node_modules", "react-helmet"),
+      "zod": path.resolve(import.meta.dirname, "node_modules", "zod")
     },
+  },
+  optimizeDeps: {
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom', 
+      'scheduler', 
+      'wouter', 
+      'regexparam',
+      '@emotion/react',
+      '@emotion/styled',
+      '@mui/material',
+      'framer-motion',
+      'react-helmet',
+      'zod'
+    ]
   },
   root: path.resolve(import.meta.dirname, "client"),
   ssr: {
@@ -79,8 +104,5 @@ export default defineConfig({
       'Cache-Control': 'public, max-age=31536000'
     }
   },
-  // Configure optimization options
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'scheduler', 'wouter', 'regexparam']
-  },
+  
 });
